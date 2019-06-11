@@ -1,0 +1,628 @@
+{
+	"Game" : [
+		{"Chapter": "Beguinning",
+			"Story": "You have a very important homework assignement, that needs to be ready by tomorrow. Luckily, you have lots of available time right now. \nAlso, there's this youtube video that has been in your thoughts recently. It wouldn't hurt to check it out; it would put you in a good mood for studying. ",
+			"Question": "",
+			"Answers": [
+				"I should at least check out what I need to do first",
+				"Check video",
+				"",
+				""
+			],
+			"Next chapter": [
+				"study",
+				"video",
+				"",
+				""
+			],
+			"Time": [
+				20,
+				10,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					-10,
+					-10,
+					-10,
+					20,
+					20,
+					10
+				],
+				"Answer2": [
+					10,
+					10,
+					10,
+					-20,
+					-20,
+					0
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "study",
+			"Story": "You open the necessary file; the first assignement is a little bit hard, as it would require you to check an internet textbook that has never made sense to you. Not to mention, the format is so crazy that this almost seems purposeful. You imagine the effort it would take to do this and feel tired and frustrated in advance, despite not having done anything yet. This feeling is just terrible!\nPerhaps it will decrease, if you just take a look at what you need to do and summarise it in your mind; even if you don't continue right away, at least you would know, what to do later.\nThen again, you just don't feel like studying right now. Maybe the right feeling will come later, after a short break?",
+			"Question": "",
+			"Answers": [
+				"Perhaps a closer look of the assignement will help",
+				"The right feeling will probably come later",
+				"",
+				""
+			],
+			"Next chapter": [
+				"nextStep",
+				"shortBreak",
+				"",
+				""
+			],
+			"Time": [
+				15,
+				480,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					-10,
+					-10,
+					-10,
+					20,
+					20,
+					10
+				],
+				"Answer2": [
+					10,
+					10,
+					10,
+					-20,
+					-20,
+					0
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "video",
+			"Story": "You finish watching the video and then notice another video in the recommended menu, that seems absolutely hilarious. Why not take a look, you have some time to spare. \nOn the other hand, if you make a slow and modest beginning with your assignement, you could simply remember to watch the video later. ",
+			"Question": "",
+			"Answers": [
+				"Just five more minutes",
+				"At least check what i need to do",
+				"",
+				""
+			],
+			"Next chapter": [
+				"nextVideo",
+				"studyStart",
+				"",
+				""
+			],
+			"Time": [
+				310,
+				20,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					5,
+					5,
+					5,
+					-10,
+					-10,
+					0
+				],
+				"Answer2": [
+					-10,
+					-10,
+					-10,
+					20,
+					20,
+					10
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "nextStep",
+			"Story": "You look at the assignement, trying to understand all the different parts of it and decide to try if you can do it. ",
+			"Question": "",
+			"Answers": [
+				"Let's dive into this right now",
+				"The right feeling will probably come later",
+				"",
+				""
+			],
+			"Next chapter": [
+				"goodStudy",
+				"shortBreak",
+				"",
+				""
+			],
+			"Time": [
+				370,
+				480,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					-3,
+					-3,
+					-3,
+					5,
+					5,
+					80
+				],
+				 "Answer2": [
+					10,
+					10,
+					10,
+					-20,
+					-20,
+					0
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "shortBreak",
+			"Story": "You decide to take a break from studying, get some coffee and snacks, sit on the couch and watch some tv. After some time you get mad at yourself; you have less and less time to finish your assignement. What's wrong with me?! Why can't I even start?! ",
+			"Question": "",
+			"Answers": [
+				"Time to save what is possible to save",
+				"Better not to think about it, it's making you angry",
+				"",
+				""
+			],
+			"Next chapter": [
+				"doSomething",
+				"continueDoingNothing",
+				"",
+				""
+			],
+			"Time": [
+				370,
+				480,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					-10,
+					-10,
+					-10,
+					20,
+					20,
+					55
+				],
+				"Answer2": [
+					5,
+					5,
+					5,
+					-10,
+					-10,
+					0
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "studyStart",
+			"Story": "You open the necessary file; the first assignement is a little bit hard, as it would require you to check an internet textbook that has never made sense to you. Not to mention, the format is so crazy that this almost seems purposeful. You imagine the effort it would take to do this and feel tired and frustrated in advance, despite not having done anything yet. This feeling is just terrible!",
+			"Question": "",
+			"Answers": [
+				"You cant do it anyway",
+				"Time to save what is possible to save",
+				"",
+				""
+			],
+			"Next chapter": [
+				"nextVideo",
+				"studyMore",
+				"",
+				""
+			],
+			"Time": [
+				310,
+				310,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					10,
+					10,
+					10,
+					-20,
+					-20,
+					0
+				],
+				"Answer2": [
+					-5,
+					-5,
+					-5,
+					10,
+					10,
+					70
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "nextVideo",
+			"Story": "In between enjoying yourself with amusing videos, you look at the clock on the bottom right corner of your computer and discover frighteningly, that it has been 4.5 hours since you sat down in front of the computer. You are very angry at yourself, and wonder if it would have been better, if you had just started studying in the beginning. This what if scenario makes you even angrier. \n\nObviously, you have wasted a lot of time on nothing. You could still salvage the situation if you started studying right now and keep doing so continuously until bedtime. \n\nOn the other hand, you feel so frustrated that you just cant bring yourself to study. ",
+			"Question": "",
+			"Answers": [
+				"You cant do it anyway",
+				"Time to save what is possible to save",
+				"",
+				""
+			],
+			"Next chapter": [
+				"continueDoingNothing",
+				"doSomething",
+				"",
+				""
+			],
+			"Time": [
+				480,
+				370,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					3,
+					3,
+					3,
+					-5,
+					-5,
+					0
+				],
+				"Answer2": [
+					-10,
+					-10,
+					-10,
+					20,
+					20,
+					55
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "goodStudy",
+			"Story": "You wasted no time starting this, so you have some time to carefully and patiently look trough all the different details. It's not easy, but you finish the assignement after some hours and check all the solutions again, just to be sure. Before bedtime you have time for a nice dinner, which you eat watching your favorite show. \nTomorrow at school your presented answers are complimented for being some of the best in your class.",
+			"Question": "",
+			"Answers": [
+				"",
+				"",
+				"",
+				""
+			],
+			"Next chapter": [
+				"",
+				"",
+				"",
+				""
+			],
+			"Time": [
+				0,
+				0,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer2": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "studyMore",
+			"Story": "You feel very bored and frustrated, but nevertheless look observe the material long enough that some of it event sort of starts to make sence. You feel better and continue more enthusiastically. Eventually more of it makes sence. It's not easy, but after three exhausting hours you get it done. It's way past your bedtime, so you go to sleep. \n\nThe next day you are complimented about how good your answers are. ",
+			"Question": "",
+			"Answers": [
+				"",
+				"",
+				"",
+				""
+			],
+			"Next chapter": [
+				"",
+				"",
+				"",
+				""
+			],
+			"Time": [
+				0,
+				0,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer2": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "doSomething",
+			"Story": "You stay up half the night finishing your homework assignement. By the time it's finished, your eyes and head hurt. The next day at school you get a C, but later in class you are able to answer a lot of questions the teacher asks the class. You feel proud of your effort. ",
+			"Question": "",
+			"Answers": [
+				"",
+				"",
+				"",
+				""
+			],
+			"Next chapter": [
+				"",
+				"",
+				"",
+				""
+			],
+			"Time": [
+				0,
+				0,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer2": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		},
+		{"Chapter": "continueDoingNothing",
+			"Story": "Story",
+			"Question": "You peacefully, without caring what happens, finish your snacks and stay up late, watching reruns of tv shows. The next day at school you get an F. You don't really care about anything. ",
+			"Answers": [
+				"",
+				"",
+				"",
+				""
+			],
+			"Next chapter": [
+				"",
+				"",
+				"",
+				""
+			],
+			"Time": [
+				0,
+				0,
+				0,
+				0
+			],
+			"Points": {
+				"Answer1": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer2": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer3": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"Answer4": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		}
+	],
+	"Starting" : 0,
+	"Deadline" : 100,
+	"Motivation" : "(autonomy + competence + relatedness) / 3",
+	"Autonomy" : 30,
+	"Competence" : 30,
+	"Relatedness" : 30,
+	"Stress" : 50,
+	"Fatigue" : 0
+}
