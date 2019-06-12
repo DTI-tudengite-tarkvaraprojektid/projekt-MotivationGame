@@ -1,12 +1,20 @@
 body{
-  background-color: lightblue;
+  background-color: rgb(173, 216, 230);
+}
+
+#textarea{
+  border: 4px double blue;
+  border-radius: 10px;
+  background-color: rgb(120, 196, 221);
+  font-family: Georgia, serif;
+  font-size: 24px;
 }
 
 #txtnbuttons {
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
 }
-
+  
 #header {
   text-align: center;
   left: 0px;
@@ -23,7 +31,6 @@ body{
   width: 98%; /*Optional*/
   table-layout: fixed; /*Optional*/
   border-spacing: 10px; /*Optional*/
-  visibility: hidden;
 }
 
 .footer{
@@ -40,8 +47,8 @@ body{
 }
 
 .button {
-  background-color: white;
-  color: black;
+  background-color: white; 
+  color: black; 
   border: 2px solid #008CBA;
   padding: 16px 32px;
   text-align: center;
@@ -54,12 +61,11 @@ body{
   cursor: pointer;
 }
 
-#bottom {
-  position:absolute;
-  bottom:0;
-  left:0;
-  visibility: hidden;
-}
+#bottom { 
+  position:absolute;                  
+  bottom:0;                          
+  left:0;                          
+} 
 
 .button:hover {
   background-color: #008CBA;
