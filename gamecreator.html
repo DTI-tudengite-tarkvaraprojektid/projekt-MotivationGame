@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Motivation game story creator</title>
+</head>
+<body>
+  <div class="header" id="header">
+    <h2>Story Creator</h2>
+  </div>
+  <script src="style.js"></script>
+
+  <div id="ADTT">
+    <h2>Set your characters attributes and story properties.</h2>
+    <div id="attributes">
+      <label>Autonomy:</label>    <input id="StatAutonomy" type="number"><br><br>
+      <label>Competence:</label>  <input id="StatCompetence" type="number"><br><br>
+      <label>Relatedness:</label> <input id="StatRelatedness" type="number"><br><br>
+      <label>Stress:</label>      <input id="StatStress" type="number"><br><br>
+      <label>Fatigue:</label>     <input id="StatFatigue" type="number"><br><br>
+    </div>
+    <div id="date">
+      <label>Date: </label><input id="TaskDate" type="date"></input><br><br>
+    </div>
+    <div id="time">
+      <label>Time: </label> <input id="TaskTime" type="time"><br><br>
+    </div>
+    <div id="task">
+      <label>Task: </label> <textarea id="TaskText" rows="3" cols="30"></textarea>
+    </div>
+  </div>
+  <div id="textandchoices">
+    <h2>Write your story and create your choices.</h2>
+    <label>Story text: </label> <textarea id="StoryText" rows="5" cols="50">Insert your story here.</textarea> <br><br>
+    <label>Choice 1: </label> <textarea id="Choice1" rows="2" cols="20">Insert your first choice here.</textarea> <br><br>
+    <label>Choice 2: </label> <textarea id="Choice2" rows="2" cols="20">Insert your second choice here.</textarea> <br><br>
+    <label>Choice 3: </label> <textarea id="Choice3" rows="2" cols="20">Insert your third choice here.</textarea> <br><br>
+    <label>Choice 4: </label> <textarea id="Choice4" rows="2" cols="20">Insert your fourth choice here.</textarea> <br><br>
+    <input type="button" value="Back" id="backbutton">
+    <input type="button" value="Next" id="nextbutton">
+    <input type="button" value="Save" id="savebutton">
+  </div>
+</body>
+</html>
