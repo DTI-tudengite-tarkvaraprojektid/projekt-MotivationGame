@@ -1,0 +1,135 @@
+#txtnbuttons {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+}
+  
+#header {
+  text-align: center;
+  left: 0px;
+  font-family: 'Courier New', Helvetica, Arial, sans-serif;
+}
+
+.header {
+  padding: 10px 16px;
+  background: #555;
+  color: #f1f1f1;
+  display: table;
+  width: 100%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 10px; /*Optional*/
+}
+
+.column
+{
+    display: table-cell;
+    text-align: center;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+
+#ADTT {
+  width: 500px;
+  position: fixed;
+  left: 1%;
+  z-index: -1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#textandchoices {
+  text-align: right;
+  position: fixed;
+  width: 500px;
+  right: 1%;
+  z-index: -1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#Autonomy {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Autonomy>div {
+  background-color: orange; /*Changes the progress bar progression color*/
+  width: 69%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Competence {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Competence>div {
+  background-color: red; /*Changes the progress bar progression color*/
+  width: 15%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Relatedness {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Relatedness>div {
+  background-color: green; /*Changes the progress bar progression color*/
+  width: 75%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Motivation {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Motivation>div {
+  background-color: red; /*Changes the progress bar progression color*/
+  width: 1%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Stress {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Stress>div {
+  background-color: orangered; /*Changes the progress bar progression color*/
+  width: 69%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Progress {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Progress>div {
+  background-color: green; /*Changes the progress bar progression color*/
+  width: 100%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
