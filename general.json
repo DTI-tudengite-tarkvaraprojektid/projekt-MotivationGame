@@ -1,0 +1,29 @@
+{
+  "task":"Eat food",
+  "startTime":1500,
+  "deadLine":0,
+  "motivation":0,
+  "competence":0,
+  "relatedness":0,
+  "autonomy":0,
+  "stress":0,
+  "fatigue":0,
+  "progress":0,
+  "chapters":[
+    {"chapter":"Algus",
+      "story":"Lugu on siin",
+      "answers":[],
+      "nextChapter":[],
+      "points":{
+        "Answer1":[10,-5,7,12,25,2,10],
+        "Answer2":[10,-5,7,12,25,2,10],
+        "Answer3":[10,-5,7,12,25,2,10],
+        "Answer4":[10,-5,7,12,25,2,10]
+        },
+        "time":[],
+        "question":""
+        },
+    {"chapter":"Algus","story":"Lugu on siin","answers":[],"nextChapter":[],"points":{"Answer1":[10,-5,7,12,25,2,10],"Answer2":[10,-5,7,12,25,2,10],"Answer3":[10,-5,7,12,25,2,10],"Answer4":[10,-5,7,12,25,2,10]},"time":[],"question":""},
+    {"chapter":"Algus","story":"Lugu on siin","answers":[],"nextChapter":[],"points":{"Answer1":[10,-5,7,12,25,2,10],"Answer2":[10,-5,7,12,25,2,10],"Answer3":[10,-5,7,12,25,2,10],"Answer4":[10,-5,7,12,25,2,10]},"time":[],"question":""}
+    ]
+  }

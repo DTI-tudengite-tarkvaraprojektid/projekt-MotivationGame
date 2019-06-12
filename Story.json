@@ -624,5 +624,6 @@
 	"Competence" : 30,
 	"Relatedness" : 30,
 	"Stress" : 50,
-	"Fatigue" : 0
+	"Fatigue" : 0,
+	"Task" : "Finish your homework"
 }

@@ -1,9 +1,21 @@
 /*jshint esversion: 6 */
+class storyGame{
+	constructor(start, end, moti, comp, rela, auto, stress, fati, task){
+		this.task = task;
+		this.startTime = start;
+		this.deadLine = end;
+		this.motivation = moti;
+		this.competence = comp;
+		this.relatedness = rela;
+		this.autonomy = auto;
+		this.stress = stress;
+		this.fatigue = fati;
+		this.progress = 0;
+	}
+}
 
 $(document).ready(function() {
 		var id = 0;
-		var startTime;
-		var deadLine;
 		var game = [];
 		var story = {};
 		var chapter = [];
@@ -11,13 +23,6 @@ $(document).ready(function() {
 		var question = [];
 		var answer = [];
 		var points = [];
-		var competence = 0;
-		var relatedness = 0;
-		var autonomy = 0;
-		var stress = 0;
-		var fatigue = 0;
-		var progress = 0;
-		var motivation = 0;
 		var competences = [];
 		var relatednesses = [];
 		var autonomys = [];
@@ -27,63 +32,56 @@ $(document).ready(function() {
 		var task = [];
 		var dateToday = [];
 		var time = [];
+		var gameStory;
 
 		getData();
 		function getData(){
 			var url = "Story.json";
 			$.getJSON( "Story.json", function(data){
 				story = data;
-				console.log(data);
 			});
 		}
 		setTimeout(function test(){
 			setStory();
 
 			function setStory(){
-				startTime = story.Starting;
-				deadLine = story.Deadline;
-				motivation = story.Motivation;
-				competence = story.Competence;
-				relatedness = story.Relatedness;
-				autonomy = story.Autonomy;
-				stress = story.Stress;
-				fatigue = story.Fatigue;
+				gameStory = new storyGame(story.Starting, story.Deadline, story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
 				//console.log(eval(motivation));
 				story.Game.forEach(function (chapt, index){
-					question.push(chapt.Question);
-					game.push(chapt.Story);
-					chapter.push(chapt.Chapter);
-					var i;
-					for (i = 1; i<5; i++){
-						var temp = chapt.Points["Answer"+i];
-						autonomys.push(temp[0]);
-						relatednesses.push(temp[1]);
-						competences.push(temp[2]);
-						stresses.push(temp[3]);
-						fatigues.push(temp[4]);
-						progresses.push(temp[5]);
-						time.push(chapt.Time[i-1]);
-						answer.push(chapt.Answers[i-1]);
-						var nextChapt = chapt["Next chapter"][i-1];
-						next.push(nextChapt);
+				question.push(chapt.Question);
+				game.push(chapt.Story);
+				chapter.push(chapt.Chapter);
+				var i;
+				for (i = 1; i<5; i++){
+					var temp = chapt.Points["Answer"+i];
+					autonomys.push(temp[0]);
+					relatednesses.push(temp[1]);
+					competences.push(temp[2]);
+					stresses.push(temp[3]);
+					fatigues.push(temp[4]);
+					progresses.push(temp[5]);
+					time.push(chapt.Time[i-1]);
+					answer.push(chapt.Answers[i-1]);
+					var nextChapt = chapt["Next chapter"][i-1];
+					next.push(nextChapt);
 					}
 				});
 			}
 			//console.log(stress);
 			function changeData(answer){
-				autonomy += autonomys[answer];
+				gameStory.autonomy += autonomys[answer];
 				changes(autonomys[answer], "autonomy");
-				relatedness += relatednesses[answer];
-				changes(relatedness[answer], "relatedness");
-				competence += competences[answer];
-				changes(competence[answer], "competences");
-				stress += stresses[answer];
+				gameStory.relatedness += relatednesses[answer];
+				changes(relatednesses[answer], "relatedness");
+				gameStory.competence += competences[answer];
+				changes(competences[answer], "competences");
+				gameStory.stress += stresses[answer];
 				changes(stresses[answer], "stress");
-				fatigue += fatigues[answer];
+				gameStory.fatigue += fatigues[answer];
 				changes(fatigues[answer], "fatigue");
-				progress += progresses[answer];
+				gameStory.progress += progresses[answer];
 				changes(progresses[answer], "progress");
-				startTime += time[answer];
+				gameStory.startTime += time[answer];
 				console.log(stresses);
 			}
 
@@ -202,7 +200,7 @@ $(document).ready(function() {
 					document.getElementById("button4").innerHTML = answer[(id*4)+3];
 					document.getElementById("button4").style.visibility = 'visible';
 				}
-				console.log(motivation);
+				console.log(gameStory);
 			}
 
 	 }, 100);
