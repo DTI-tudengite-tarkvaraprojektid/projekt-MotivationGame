@@ -2,28 +2,43 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="style.css">
-  <script src="style.js"></script>
-  <script src="jquery.min.js"></script>
-  <script src="story.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>The motivation game</title>
-  <div class="header" id="header">
-    <h2>To be made into a status bar with stuff.</h2>
-  </div>
 </head>
 <body>
-  <div id="txtnbuttons">
-    <div id="textarea">
-      <p></p>
+  <div class="header" id="header">
+    <div class="column">
+      <label>Autonomy<div id="Autonomy"><div>69%</div></div></label> 
+      <label>Competence<div id="Competence"><div>15%</div></div></label> 
+      <label>Relatedness<div id="Relatedness"><div>75%</div></div></label> 
     </div>
-    <div id="buttons">
-      <button class="button" id="button1" value=0>Choice 1</button>
-      <button class="button" id="button2" value=1>Choice 2</button>
-      <button class="button" id="button3" value=2>Choice 3</button>
-      <button class="button" id="button4" value=3>Choice 4</button>
+    <div class="column">
+        <label>Task: </label> <br><br>
+        <label>Today: </label> <br>
+        <label>Deadline: </label> <br>
+        <label>Progress: </label> <br>
+    </div>
+    <div class="column">
+        <label>Motivation<div id="Motivation"><div>1%</div></div></label>
+        <label>Stress<div id="Stress"><div>69%</div></div></label>
+        <label>Progress<div id="Progress"><div>100%</div></div></label>
     </div>
   </div>
+  <div id="txtnbuttons">
+    <div id="textarea">
+      <p>This text is for testing purposes only!</p>
+    </div>
+    <footer>
+    <div id="bottom" class='footer'>
+      <button id="button1" class='button'>Choice 1</button>
+      <button id="button2" class='button'>Choice 2</button>
+      <button id="button3" class='button'>Choice 3</button>
+      <button id="button4" class='button'>Choice 4</button>
+    </div>
+  </footer>
+  </div>
+  <script src="style.js"></script>
 </body>
 </html>
