@@ -617,9 +617,9 @@
 			}
 		}
 	],
-	"Starting" : 0,
-	"Deadline" : 100,
-	"Motivation" : "(autonomy + competence + relatedness) / 3",
+	"Starting" : 8,
+	"Deadline" : 20,
+	"Motivation" : "(gameStory.autonomy + gameStory.competence + gameStory.relatedness) / 3",
 	"Autonomy" : 30,
 	"Competence" : 30,
 	"Relatedness" : 30,

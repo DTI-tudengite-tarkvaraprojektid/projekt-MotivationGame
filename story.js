@@ -35,6 +35,7 @@ $(document).ready(function() {
 		var time = [];
 		var gameStory;
 		var motivEval;
+		var buttons;
 
 		getData();
 		function getData(){
@@ -150,6 +151,7 @@ $(document).ready(function() {
 			}
 
 			function startGame(){
+				buttons = 0;
 				setStory();
 				progressStr();
 				id = 0;
@@ -198,27 +200,32 @@ $(document).ready(function() {
 				if(answer[(id*4)] == ""){
 					document.getElementById("button1").style.visibility = 'hidden';
 				} else {
+					buttons++;
 					document.getElementById("button1").innerHTML = answer[(id*4)];
 					document.getElementById("button1").style.visibility = 'visible';
 				}
 				if(answer[(id*4)+1] == ""){
 					document.getElementById("button2").style.visibility = 'hidden';
 				} else {
+					buttons++;
 					document.getElementById("button2").innerHTML = answer[(id*4)+1];
 					document.getElementById("button2").style.visibility = 'visible';
 				}
 				if(answer[(id*4)+2] == ""){
 					document.getElementById("button3").style.visibility = 'hidden';
 				} else {
+					buttons++;
 					document.getElementById("button3").innerHTML = answer[(id*4)+2];
 					document.getElementById("button3").style.visibility = 'visible';
 				}
 				if(answer[(id*4)+3] == ""){
 					document.getElementById("button4").style.visibility = 'hidden';
 				} else {
+					buttons++;
 					document.getElementById("button4").innerHTML = answer[(id*4)+3];
 					document.getElementById("button4").style.visibility = 'visible';
 				}
+				changeButtonsLocation(buttons);
 				document.getElementById("button1").onclick = nextChapter;
 				document.getElementById("button2").onclick = nextChapter;
 
