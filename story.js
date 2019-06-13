@@ -33,6 +33,7 @@ $(document).ready(function() {
 		var dateToday = [];
 		var time = [];
 		var gameStory;
+		var motivEval;
 
 		getData();
 		function getData(){
@@ -47,6 +48,7 @@ $(document).ready(function() {
 			function setStory(){
 				gameStory = new storyGame(story.Starting, story.Deadline, story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
 				//console.log(eval(motivation));
+				motivEval = story.Motivation;
 				story.Game.forEach(function (chapt, index){
 				question.push(chapt.Question);
 				game.push(chapt.Story);
@@ -81,8 +83,7 @@ $(document).ready(function() {
 				changes(fatigues[answer], "fatigue");
 				gameStory.progress += progresses[answer];
 				changes(progresses[answer], "progress");
-				gameStory.startTime += time[answer];
-				console.log(stresses);
+				gameStory.startTime += time[answer]/60;
 			}
 
 			function changes(stats, atr){
@@ -107,37 +108,89 @@ $(document).ready(function() {
 
 			startGame();
 			function progressStr(){
-				if (progress == 0) { //progressi if, sõnadega
-					progress = "Not started";
-				} else if (progress >= 1 && progress <=10){
-					progress = "Just started";
-				} else if (progress > 10 && progress <=20){
-					progress = "Early stages";
-				} else if (progress > 20 && progress <=30){
-					progress = "A little";
-				} else if (progress > 30 && progress <=40){
-					progress = "About a third";
-				} else if (progress > 40 && progress <=50){
-					progress = "Almost half done";
-				} else if (progress > 50 && progress <=60){
-					progress = "Halfway there";
-				} else if (progress > 60 && progress <=70){
-					progress = "More than half";
-				} else if (progress > 70 && progress <=80){
-				 progress = "Getting close";
-				} else if (progress > 80 && progress <=90){
-					progress = "Almost there";
-				} else if (progress > 90 && progress < 100){
-				 progress = "Virtually ready";
-				} else if (progress == 100){
-				 progress = "Done";
+				var progressStatus;
+				if (gameStory.progress == 0) { //progressi if, sõnadega
+					progressStatus = "Not started";
+				} else if (gameStory.progress >= 1 && gameStory.progress <=10){
+					progressStatus = "Just started";
+				} else if (gameStory.progress > 10 && gameStory.progress <=20){
+					progressStatus = "Early stages";
+				} else if (gameStory.progress > 20 && gameStory.progress <=30){
+					progressStatus = "A little";
+				} else if (gameStory.progress > 30 && gameStory.progress <=40){
+					progressStatus = "About a third";
+				} else if (gameStory.progress > 40 && gameStory.progress <=50){
+					progressStatus = "Almost half done";
+				} else if (gameStory.progress > 50 && gameStory.progress <=60){
+					progressStatus = "Halfway there";
+				} else if (gameStory.progress > 60 && gameStory.progress <=70){
+					progressStatus = "More than half";
+				} else if (gameStory.progress > 70 && gameStory.progress <=80){
+				 	progressStatus = "Getting close";
+				} else if (gameStory.progress > 80 && gameStory.progress <=90){
+					progressStatus = "Almost there";
+				} else if (gameStory.progress > 90 && gameStory.progress < 100){
+				 	progressStatus = "Virtually ready";
+				} else if (gameStory.progress == 100){
+				 	progressStatus = "Done";
 				} else {
-				console.log ("progressi error");
+					progressStatus = "progressi error";
+				}
+				document.getElementById("Progress").innerHTML = "Progress: "+progressStatus;
+			}
+			function changeBarColor(barId, percentage){
+				if(percentage <= 25){
+					document.getElementById(barId).style.backgroundColor = 'red';
+				} else if(percentage > 25 && percentage <= 75){
+					document.getElementById(barId).style.backgroundColor = 'orange';
+				} else {
+					document.getElementById(barId).style.backgroundColor = 'green';
 				}
 			}
 
 			function startGame(){
+				progressStr();
 				document.getElementById("textarea").innerHTML = game[0];
+				document.getElementById("header").style.visibility = 'visible';
+				document.getElementById("Auto").innerHTML = gameStory.autonomy+"%";
+				document.getElementById("Auto").style.width = gameStory.autonomy+'%';
+				changeBarColor("Auto", gameStory.autonomy);
+				document.getElementById("Comp").innerHTML = gameStory.competence+"%";
+				document.getElementById("Comp").style.width = gameStory.competence+'%';
+				changeBarColor("Comp", gameStory.competence);
+				document.getElementById("Relat").innerHTML = gameStory.relatedness+"%";
+				document.getElementById("Relat").style.width = gameStory.relatedness+'%';
+				changeBarColor("Relat", gameStory.relatedness);
+				document.getElementById("Motiv").innerHTML = eval(motivEval)+"%";
+				document.getElementById("Motiv").style.width = eval(motivEval)+'%';
+				changeBarColor("Motiv",  eval(motivEval));
+				document.getElementById("Str").innerHTML = gameStory.stress+"%";
+				document.getElementById("Str").style.width = gameStory.stress+'%';
+				changeBarColor("Str", 100-gameStory.stress);
+				document.getElementById("Prog").innerHTML = gameStory.progress+"%";
+				document.getElementById("Prog").style.width = gameStory.progress+'%';
+				changeBarColor("Prog",gameStory.progress);
+				document.getElementById("Task").innerHTML = "Task: "+gameStory.task;//parseFloat(this.value).toFixed(2);
+
+				var minutesDead = Math.floor(gameStory.deadLine-gameStory.deadLine%24);
+				if(minutesDead < 10){
+					minutesDead =  Math.floor(gameStory.deadLine-gameStory.deadLine%24) +"0";
+				} else {
+					 Math.floor(gameStory.deadLine-gameStory.deadLine%24);
+				}
+				var gameEnd = "Day "+ Math.floor(gameStory.deadLine/24+1) + ", "+ Math.floor(gameStory.deadLine%24) +":"+ minutesDead;
+
+				document.getElementById("Deadline").innerHTML = "Deadline: "+gameEnd;
+
+				var minutes = Math.floor(gameStory.startTime-gameStory.startTime%24);
+				if(minutes < 10){
+					minutes =  Math.floor(gameStory.startTime-gameStory.startTime%24) +"0";
+				} else {
+					 Math.floor(gameStory.startTime-gameStory.startTime%24);
+				}
+				var gameStart = "Day "+ Math.floor(gameStory.startTime/24+1) + ", "+ Math.floor(gameStory.startTime%24) +":"+ minutes;
+
+				document.getElementById("Today").innerHTML = "Today: "+gameStart;
 				if(answer[(id*4)] == ""){
 					document.getElementById("button1").style.visibility = 'hidden';
 				} else {
@@ -175,7 +228,40 @@ $(document).ready(function() {
 						id = chapter.indexOf(i);
 					}
 				}
+				progressStr();
 				document.getElementById("textarea").innerHTML = game[id];
+				document.getElementById("header").style.visibility = 'visible';
+				document.getElementById("Auto").innerHTML = gameStory.autonomy+"%";
+				document.getElementById("Auto").style.width = gameStory.autonomy+'%';
+				changeBarColor("Auto", gameStory.autonomy);
+				document.getElementById("Comp").innerHTML = gameStory.competence+"%";
+				document.getElementById("Comp").style.width = gameStory.competence+'%';
+				changeBarColor("Comp", gameStory.competence);
+				document.getElementById("Relat").innerHTML = gameStory.relatedness+"%";
+				document.getElementById("Relat").style.width = gameStory.relatedness+'%';
+				changeBarColor("Relat", gameStory.relatedness);
+				document.getElementById("Motiv").innerHTML = eval(motivEval)+"%";
+				document.getElementById("Motiv").style.width = eval(motivEval)+'%';
+				changeBarColor("Motiv",  eval(motivEval));
+				document.getElementById("Str").innerHTML = gameStory.stress+"%";
+				document.getElementById("Str").style.width = gameStory.stress+'%';
+				changeBarColor("Str", 100-gameStory.stress);
+				document.getElementById("Prog").innerHTML = gameStory.progress+"%";
+				document.getElementById("Prog").style.width = gameStory.progress+'%';
+				changeBarColor("Prog",gameStory.progress);
+
+				var minutes = Math.floor(gameStory.startTime*60-Math.floor(gameStory.startTime)*60);
+				if(minutes < 10){
+					minutes =  Math.floor(gameStory.startTime*60-Math.floor(gameStory.startTime)*60) +"0";
+				} else {
+					 Math.floor(gameStory.startTime*60-Math.floor(gameStory.startTime)*60);
+				}
+
+				var gameStart = "Day "+ Math.floor(gameStory.startTime/24+1) + ", "+ Math.floor(gameStory.startTime%24) +":"+ minutes;
+
+
+				document.getElementById("Today").innerHTML = "Today: "+gameStart;
+				console.log(gameStart);
 				if(answer[(id*4)] == ""){
 					document.getElementById("button1").style.visibility = 'hidden';
 				} else {
@@ -201,6 +287,11 @@ $(document).ready(function() {
 					document.getElementById("button4").style.visibility = 'visible';
 				}
 				console.log(gameStory);
+			}
+			function checkStatus(){
+				if(gameStory.StartTime > gameStory.DeadLine){
+						document.getElementById("Progress").innerHTML = "Progress: Over DeadLine";
+				}
 			}
 
 	 }, 100);
