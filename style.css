@@ -14,7 +14,7 @@ body{
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
 }
-  
+
 #header {
   text-align: center;
   left: 0px;
@@ -31,6 +31,7 @@ body{
   width: 98%; /*Optional*/
   table-layout: fixed; /*Optional*/
   border-spacing: 10px; /*Optional*/
+  visibility: hidden;
 }
 
 .footer{
@@ -46,9 +47,32 @@ body{
   border-spacing: 10px; /*Optional*/
 }
 
+.restart2 {
+  background-color: white;
+  color: black;
+  border: 2px solid orange;
+  padding: 8px 2px;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.restart2:hover {
+  background-color: orange;
+  color: white;
+}
+
 .button {
-  background-color: white; 
-  color: black; 
+  background-color: white;
+  color: black;
   border: 2px solid #008CBA;
   padding: 16px 32px;
   text-align: center;
@@ -61,11 +85,12 @@ body{
   cursor: pointer;
 }
 
-#bottom { 
-  position:absolute;                  
-  bottom:0;                          
-  left:0;                          
-} 
+#bottom {
+  position:absolute;
+  bottom:0;
+  left:0;
+  visibility: hidden;
+}
 
 .button:hover {
   background-color: #008CBA;

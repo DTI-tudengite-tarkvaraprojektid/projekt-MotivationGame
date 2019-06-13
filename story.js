@@ -15,6 +15,7 @@ class storyGame{
 }
 
 $(document).ready(function() {
+
 		var id = 0;
 		var game = [];
 		var story = {};
@@ -43,8 +44,8 @@ $(document).ready(function() {
 			});
 		}
 		setTimeout(function test(){
-			setStory();
-
+			//setStory();
+			document.getElementById("restart2").onclick = startGame;
 			function setStory(){
 				gameStory = new storyGame(story.Starting, story.Deadline, story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
 				//console.log(eval(motivation));
@@ -149,9 +150,12 @@ $(document).ready(function() {
 			}
 
 			function startGame(){
+				setStory();
 				progressStr();
+				id = 0;
 				document.getElementById("textarea").innerHTML = game[0];
 				document.getElementById("header").style.visibility = 'visible';
+				document.getElementById("bottom").style.visibility = 'visible';
 				document.getElementById("Auto").innerHTML = gameStory.autonomy+"%";
 				document.getElementById("Auto").style.width = gameStory.autonomy+'%';
 				changeBarColor("Auto", gameStory.autonomy);
@@ -217,6 +221,7 @@ $(document).ready(function() {
 				}
 				document.getElementById("button1").onclick = nextChapter;
 				document.getElementById("button2").onclick = nextChapter;
+
 			}
 
 			function nextChapter(){
@@ -229,6 +234,7 @@ $(document).ready(function() {
 					}
 				}
 				progressStr();
+				checkStatus();
 				document.getElementById("textarea").innerHTML = game[id];
 				document.getElementById("header").style.visibility = 'visible';
 				document.getElementById("Auto").innerHTML = gameStory.autonomy+"%";
@@ -289,10 +295,16 @@ $(document).ready(function() {
 				console.log(gameStory);
 			}
 			function checkStatus(){
-				if(gameStory.StartTime > gameStory.DeadLine){
+				console.log(gameStory.startTime + " : "+gameStory.deadLine );
+				if(gameStory.startTime > gameStory.deadLine){
 						document.getElementById("Progress").innerHTML = "Progress: Over DeadLine";
 				}
 			}
 
+			function changeButtonsLocation(x){
+				if(x == 2){
+
+				}
+			}
 	 }, 100);
 });
