@@ -14,6 +14,9 @@ body{
   text-align: center;
   align-content: center;
   padding: 10px;
+  overflow: scroll;
+  max-height: 300px;
+  overflow-x: hidden;
 }
 
 #txtnbuttons {
@@ -48,9 +51,9 @@ body{
   background: #555;
   color: #f1f1f1;
   display: table;
-  width: 98%; /*Optional*/
-  table-layout: fixed; /*Optional*/
-  border-spacing: 10px; /*Optional*/
+  width: 98%;
+  table-layout: fixed;
+  border-spacing: 10px; 
 }
 
 .restart2 {
@@ -67,7 +70,7 @@ body{
   transition-duration: 0.4s;
   cursor: pointer;
   position: absolute;
-  right: 0;
+  right: 2px;
   bottom: 0;
 }
 
@@ -92,7 +95,7 @@ body{
 }
 
 #bottom {
-  position:absolute;
+  position: absolute;
   bottom:0;
   left:0;
   visibility: hidden;
@@ -217,3 +220,22 @@ body{
   height: 18px;
   border-radius: 18px;
 }
+
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
