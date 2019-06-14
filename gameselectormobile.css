@@ -1,0 +1,16 @@
+body{
+    background-color: lightblue;
+    font-family:  'Courier New',  Helvetica, sans-serif
+}
+
+.header {
+    background: #555;
+    left: 0px;
+    top: 0;
+    color: #f1f1f1;
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+    text-align: center;
+}
