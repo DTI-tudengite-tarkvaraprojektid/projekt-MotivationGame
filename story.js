@@ -5,6 +5,7 @@ class storyGame{
 		this.startTime = start;
 		this.deadLine = end;
 		this.motivation = moti;
+		this.rmotivation = 0;
 		this.competence = comp;
 		this.relatedness = rela;
 		this.autonomy = auto;
@@ -36,6 +37,7 @@ $(document).ready(function() {
 		var gameStory;
 		var motivEval;
 		var buttons;
+		var oldGame;
 
 		getData();
 		function getData(){
@@ -45,12 +47,12 @@ $(document).ready(function() {
 			});
 		}
 		setTimeout(function test(){
-			//setStory();
 			document.getElementById("restart2").onclick = startGame;
 			function setStory(){
 				gameStory = new storyGame(story.Starting, story.Deadline, story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
-				//console.log(eval(motivation));
+				oldGame = Object.assign({}, gameStory);
 				motivEval = story.Motivation;
+				gameStory.rmotivation =  eval(motivEval);
 				story.Game.forEach(function (chapt, index){
 				question.push(chapt.Question);
 				game.push(chapt.Story);
@@ -86,6 +88,7 @@ $(document).ready(function() {
 				gameStory.progress += progresses[answer];
 				changes(progresses[answer], "progress");
 				gameStory.startTime += time[answer]/60;
+				gameStory.rmotivation = eval(motivEval);
 			}
 
 			function changes(stats, atr){
@@ -155,6 +158,7 @@ $(document).ready(function() {
 				setStory();
 				progressStr();
 				id = 0;
+				var i = 0;
 				document.getElementById("textarea").innerHTML = game[0];
 				document.getElementById("header").style.visibility = 'visible';
 				document.getElementById("bottom").style.visibility = 'visible';
@@ -167,15 +171,15 @@ $(document).ready(function() {
 				document.getElementById("Relat").innerHTML = gameStory.relatedness+"%";
 				document.getElementById("Relat").style.width = gameStory.relatedness+'%';
 				changeBarColor("Relat", gameStory.relatedness);
-				document.getElementById("Motiv").innerHTML = eval(motivEval)+"%";
-				document.getElementById("Motiv").style.width = eval(motivEval)+'%';
-				changeBarColor("Motiv",  eval(motivEval));
+				document.getElementById("Motiv").innerHTML = gameStory.rmotivation+"%";
+				document.getElementById("Motiv").style.width = gameStory.rmotivation+'%';
+				changeBarColor("Motiv",  gameStory.rmotivation);
 				document.getElementById("Str").innerHTML = gameStory.stress+"%";
 				document.getElementById("Str").style.width = gameStory.stress+'%';
 				changeBarColor("Str", 100-gameStory.stress);
 				document.getElementById("Prog").innerHTML = gameStory.progress+"%";
 				document.getElementById("Prog").style.width = gameStory.progress+'%';
-				changeBarColor("Prog",gameStory.progress);
+				changeBarColor("Prog", gameStory.progress);
 				document.getElementById("Task").innerHTML = "Task: "+gameStory.task;//parseFloat(this.value).toFixed(2);
 
 				var minutesDead = Math.floor(gameStory.deadLine-gameStory.deadLine%24);
@@ -232,6 +236,8 @@ $(document).ready(function() {
 			}
 
 			function nextChapter(){
+				oldGame = Object.assign({}, gameStory);
+				console.log(oldGame);
 				var x = parseInt($(this).val(), 10);
 				changeData(x+(id*4));
 				var nextChapt = next[x+(id*4)];
@@ -244,24 +250,38 @@ $(document).ready(function() {
 				checkStatus();
 				document.getElementById("textarea").innerHTML = game[id];
 				document.getElementById("header").style.visibility = 'visible';
-				document.getElementById("Auto").innerHTML = gameStory.autonomy+"%";
-				document.getElementById("Auto").style.width = gameStory.autonomy+'%';
+				move("autonomy", "Auto");
 				changeBarColor("Auto", gameStory.autonomy);
-				document.getElementById("Comp").innerHTML = gameStory.competence+"%";
-				document.getElementById("Comp").style.width = gameStory.competence+'%';
+				move("competence", "Comp");
 				changeBarColor("Comp", gameStory.competence);
-				document.getElementById("Relat").innerHTML = gameStory.relatedness+"%";
-				document.getElementById("Relat").style.width = gameStory.relatedness+'%';
+				move("relatedness", "Relat");
 				changeBarColor("Relat", gameStory.relatedness);
-				document.getElementById("Motiv").innerHTML = eval(motivEval)+"%";
-				document.getElementById("Motiv").style.width = eval(motivEval)+'%';
+				move("rmotivation", "Motiv");
 				changeBarColor("Motiv",  eval(motivEval));
-				document.getElementById("Str").innerHTML = gameStory.stress+"%";
-				document.getElementById("Str").style.width = gameStory.stress+'%';
+				move("stress", "Str");
 				changeBarColor("Str", 100-gameStory.stress);
-				document.getElementById("Prog").innerHTML = gameStory.progress+"%";
-				document.getElementById("Prog").style.width = gameStory.progress+'%';
+				move("progress", "Prog");
 				changeBarColor("Prog",gameStory.progress);
+
+				function move(stat, id) {
+				  var elem = document.getElementById(id);
+				  var width = oldGame[stat];
+				  var i = setInterval(frame, 10);
+				  function frame() {
+				    if (width == gameStory[stat]) {
+				      clearInterval(i);
+				    } else if(gameStory[stat]-width>0) {
+				      width++;
+				      elem.style.width = width + '%';
+							elem.innerHTML = width+"%";
+				    } else {
+							width--;
+				      elem.style.width = width + '%';
+							elem.innerHTML = width+"%";
+							console.log("Negavtiivne");
+						}
+				  }
+				}
 
 				var minutes = Math.floor(gameStory.startTime*60-Math.floor(gameStory.startTime)*60);
 				if(minutes < 10){
@@ -274,7 +294,6 @@ $(document).ready(function() {
 
 
 				document.getElementById("Today").innerHTML = "Today: "+gameStart;
-				console.log(gameStart);
 				if(answer[(id*4)] == ""){
 					document.getElementById("button1").style.visibility = 'hidden';
 				} else {
@@ -299,10 +318,8 @@ $(document).ready(function() {
 					document.getElementById("button4").innerHTML = answer[(id*4)+3];
 					document.getElementById("button4").style.visibility = 'visible';
 				}
-				console.log(gameStory);
 			}
 			function checkStatus(){
-				console.log(gameStory.startTime + " : "+gameStory.deadLine );
 				if(gameStory.startTime > gameStory.deadLine){
 						document.getElementById("Progress").innerHTML = "Progress: Over DeadLine";
 				}
