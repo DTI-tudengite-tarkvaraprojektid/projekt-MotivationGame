@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="jquery.min.js"></script>
   <script src="CreateStory.js"></script>
+  <script src="style.js"></script>
   <title>Motivation game story creator</title>
 </head>
 <body>
@@ -18,22 +19,34 @@
   <div id="twodivs">
     <div id="ADTT">
       <h2>Set your characters attributes and story properties.</h2>
-        <label>Autonomy:</label>    <input id="StatAutonomy" type="number" placeholder="Level of autonomy"><br><br>
-        <label>Competence:</label>  <input id="StatCompetence" type="number"placeholder="Level of competence"><br><br>
-        <label>Relatedness:</label> <input id="StatRelatedness" type="number" placeholder="Level of relatedness"><br><br>
-        <label>Stress:</label>      <input id="StatStress" type="number" placeholder="Level of stress"><br><br>
-        <label>Fatigue:</label>     <input id="StatFatigue" type="number" placeholder="Level of fatigue"><br><br>
+        <label>Autonomy:</label>    <input id="StatAutonomy" type="number" placeholder="Level of autonomy" max="100"> <br><br>
+        <label>Competence:</label>  <input id="StatCompetence" type="number"placeholder="Level of competence" max="100"> <br><br>
+        <label>Relatedness:</label> <input id="StatRelatedness" type="number" placeholder="Level of relatedness" max="100"> <br><br>
+        <label>Stress:</label>      <input id="StatStress" type="number" placeholder="Level of stress" max="100"> <br><br>
+        <label>Fatigue:</label>     <input id="StatFatigue" type="number" placeholder="Level of fatigue" max="100"> <br><br>
         <label>Time: </label> <input id="TaskTime" type="time" min="0"><br><br>
         <label>Time to complete: </label> <input id="DaysToComplete" type="number" min="0" placeholder="Days"> <input id="HoursToComplete" type="number" min="0" max="23" placeholder="Hours"> <br><br>
         <label>Task: </label> <textarea id="TaskText" rows="3" cols="30" placeholder="Insert your task here."></textarea>
     </div>
     <div id="textandchoices">
       <h2>Write your story and create your choices.</h2>
-      <label>Story text:</label> <textarea id="StoryText" rows="5" cols="43" placeholder="Insert your story here."></textarea> <br><br>
-      <label>Choice 1: </label> <textarea id="Choice1" rows="2" cols="20" placeholder="Insert your first choice here."></textarea> <textarea id="NextChap1" rows="2" cols="20" placeholder="Next chapter"></textarea><br><br>
-      <label>Choice 2: </label> <textarea id="Choice2" rows="2" cols="20" placeholder="Insert your second choice here."></textarea> <textarea id="NextChap2" rows="2" cols="20" placeholder="Next chapter"></textarea><br><br>
-      <label>Choice 3: </label> <textarea id="Choice3" rows="2" cols="20" placeholder="Insert your third choice here."></textarea> <textarea id="NextChap3" rows="2" cols="20" placeholder="Next chapter"></textarea><br><br>
-      <label>Choice 4: </label> <textarea id="Choice4" rows="2" cols="20" placeholder="Insert your fourth choice here."></textarea> <textarea id="NextChap4" rows="2" cols="20" placeholder="Next chapter"></textarea><br><br>
+      <label>Story text:</label> <textarea id="StoryText" rows="5" cols="43" placeholder="Insert your story here."></textarea> <br><hr>
+      <label>Choice 1: </label> <textarea id="Choice1" rows="2" cols="20" placeholder="Insert your first choice here."></textarea> <textarea id="NextChap1" rows="2" cols="20" placeholder="Next chapter"></textarea> <br>
+      <label>Autonomy </label><select name="Autonomy change" class="DDown" id="dropdown1"></select> <label>Competence </label><select name="Competence change" class="DDown" id="dropdown2"></select> <label>Relatedness </label><select name="Relatedness change" class="DDown" id="dropdown3"></select>
+      <label>Stress </label><select name="Stress change" id="dropdown4" class="DDown"></select> <label>Fatigue </label><select name="Fatigue change" id="dropdown5" class="DDown"></select> <label>Time (in minutes)</label><select name="Time change" id="dropdown21" class="DDown"></select><br>
+      <hr>
+      <label>Choice 2: </label> <textarea id="Choice2" rows="2" cols="20" placeholder="Insert your second choice here."></textarea> <textarea id="NextChap2" rows="2" cols="20" placeholder="Next chapter"></textarea><br>
+      <label>Autonomy </label><select name="Autonomy change" id="dropdown6" class="DDown"></select> <label>Competence </label><select name="Competence change" id="dropdown7" class="DDown"></select> <label>Relatedness </label><select name="Relatedness change" id="dropdown8" class="DDown"></select>
+      <label>Stress </label><select name="Stress change" id="dropdown9" class="DDown"></select> <label>Fatigue </label><select name="Fatigue change" id="dropdown10" class="DDown"></select> <label>Time (in minutes)</label><select name="Time change" id="dropdown22" class="DDown"></select><br>
+      <hr>
+      <label>Choice 3: </label> <textarea id="Choice3" rows="2" cols="20" placeholder="Insert your third choice here."></textarea> <textarea id="NextChap3" rows="2" cols="20" placeholder="Next chapter"></textarea><br>
+      <label>Autonomy </label><select name="Autonomy change" id="dropdown11" class="DDown"></select> <label>Competence </label><select name="Competence change" id="dropdown12" class="DDown"></select> <label>Relatedness </label><select name="Relatedness change" id="dropdown13" class="DDown"></select>
+      <label>Stress </label><select name="Stress change" id="dropdown14" class="DDown"></select> <label>Fatigue </label><select name="Fatigue change" id="dropdown15" class="DDown"></select> <label>Time (in minutes)</label><select name="Time change" id="dropdown23" class="DDown"></select><br>
+      <hr>
+      <label>Choice 4: </label> <textarea id="Choice4" rows="2" cols="20" placeholder="Insert your fourth choice here."></textarea> <textarea id="NextChap4" rows="2" cols="20" placeholder="Next chapter"></textarea><br>
+      <label>Autonomy </label><select name="Autonomy change" id="dropdown16" class="DDown"></select> <label>Competence </label><select name="Competence change" id="dropdown17" class="DDown"></select> <label>Relatedness </label><select name="Relatedness change" id="dropdown18" class="DDown"></select>
+      <label>Stress </label><select name="Stress change" id="dropdown19" class="DDown"></select> <label>Fatigue </label><select name="Fatigue change" id="dropdown20" class="DDown"></select> <label>Time (in minutes)</label><select name="Time change" id="dropdown24" class="DDown"></select><br>
+      <hr>
       <input type="button" value="Load" id="backbutton" class="button">
       <input type="button" value="Next" id="nextbutton" class="button">
       <input type="button" value="Save" id="savebutton" class="button">

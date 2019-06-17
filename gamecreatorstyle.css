@@ -65,6 +65,7 @@
     border: 2px solid #008CBA;
     border-radius: 6px;
     transition: 0.5s;
+    vertical-align: top;
   }
 
   input:focus{
@@ -72,5 +73,16 @@
   }
 
   textarea:focus{
+    border: 2px solid blue;
+  }
+
+  select{
+    resize: none;
+    border: 2px solid #008CBA;
+    border-radius: 6px;
+    transition: 0.5s;
+  }
+
+  select:focus{
     border: 2px solid blue;
   }
