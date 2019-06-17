@@ -27,8 +27,16 @@ class game{
   }
 }
 
+class ChapterStatus{
+	constructor(){
+		this.Chapter = [];
+		this.Status = [];
+	}
+}
+
 var story = {};
 var lastChapt = "";
+var index = 0;
 
 $(document).ready(function() {
 	//save
@@ -37,18 +45,37 @@ $(document).ready(function() {
 	document.getElementById("nextbutton").onclick = showChapters;
 	//back
 	document.getElementById("backbutton").onclick = getSavedData;
+
+	getSavedData();
 });
 
 function getData(){
 	var endTime = getEndTime();
 	var startTime = getStartTime();
 	var chapt = {};
-	story = new storyGame(startTime, endTime, 0, parseInt($("#StatCompetence").val()), parseInt($("#StatRelatedness").val()), parseInt($("#StatAutonomy").val()), parseInt($("#StatStress").val()), parseInt($("#StatFatigue").val()), $("#TaskText").val());
-	chapt = new game($("#StoryText").val(), "", "default");
-	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val())
-	chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
-	story.Chapters.push(chapt);
-	saveStoryLocal();
+	if (localStorage.getItem("Story") === null) {
+		story = new storyGame(startTime, endTime, 0, parseInt($("#StatCompetence").val()), parseInt($("#StatRelatedness").val()), parseInt($("#StatAutonomy").val()), parseInt($("#StatStress").val()), parseInt($("#StatFatigue").val()), $("#TaskText").val());
+		chapt = new game($("#StoryText").val(), "", "default");
+		chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val())
+		chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
+		story.Chapters.push(chapt);
+	} else {
+		story = JSON.parse(localStorage.getItem('Story'));
+		/*if(chap.Chapter == name){
+			story.Chapters.splice(index, 1);
+		}*/
+	}
+	var status = new ChapterStatus();
+	status.Chapter.push("default");
+	status.Status.push(1);
+	story.Chapters.forEach(function (chapt, index){
+		for (i = 0; i<4; i++){
+					var name = chapt["Next chapter"][i];
+					status.Chapter.push(chapt["Next chapter"][i]);
+					status.Status.push(0);
+			}
+	});
+	saveStoryLocal(status);
 }
 
 function getEndTime(){
@@ -76,8 +103,9 @@ function getStartTime(){
 	return time;
 }
 
-function saveStoryLocal(){
+function saveStoryLocal(c){
 	localStorage.setItem('Story', JSON.stringify(story));
+	localStorage.setItem('Status', JSON.stringify(c));
 }
 
 function saveStory(){
@@ -96,143 +124,175 @@ function saveStory(){
 
 function getSavedData(){
 	story = JSON.parse(localStorage.getItem('Story'));
-	document.getElementById("StatCompetence").value = story.Competence;
-	document.getElementById("StatRelatedness").value = story.Relatedness;
-	document.getElementById("StatAutonomy").value = story.Autonomy;
-	document.getElementById("StatStress").value = story.Stress;
-	document.getElementById("StatFatigue").value = story.Fatigue;
-	document.getElementById("TaskText").value = story.Task;
-	document.getElementById("DaysToComplete").value = Math.floor(story.DeadLine/24);
-	document.getElementById("HoursToComplete").value = Math.floor(story.DeadLine%24);
-	document.getElementById("StoryText").value = story.Chapters[0].Story;
-	document.getElementById("Choice1").value = story.Chapters[0].Answers[0];
-	document.getElementById("Choice2").value = story.Chapters[0].Answers[1];
-	document.getElementById("Choice3").value = story.Chapters[0].Answers[2];
-	document.getElementById("Choice4").value = story.Chapters[0].Answers[3];
-	/*var next =  story.Chapters[0]["Next chapter"][0];
-	console.log(next);*/
-	document.getElementById("NextChap1").value = story.Chapters[0]["Next chapter"][0];
-	document.getElementById("NextChap2").value = story.Chapters[0]["Next chapter"][1];
-	document.getElementById("NextChap3").value = story.Chapters[0]["Next chapter"][2];
-	document.getElementById("NextChap4").value = story.Chapters[0]["Next chapter"][3];
-	var time;
-	if(story.StartTime==0){
-		time = "00:00";
-	} else {
-		//var time;
-		var minutes = Math.round((story.StartTime%1)*60);
-		if(minutes < 10 && minutes > 0){
-			minutes = "0"+minutes.toString();
-		} else if (minutes == 0){
-			minutes = "00";
+	if (localStorage.getItem("Story") !== null) {
+		document.getElementById("StatCompetence").value = story.Competence;
+		document.getElementById("StatRelatedness").value = story.Relatedness;
+		document.getElementById("StatAutonomy").value = story.Autonomy;
+		document.getElementById("StatStress").value = story.Stress;
+		document.getElementById("StatFatigue").value = story.Fatigue;
+		document.getElementById("TaskText").value = story.Task;
+		document.getElementById("DaysToComplete").value = Math.floor(story.DeadLine/24);
+		document.getElementById("HoursToComplete").value = Math.floor(story.DeadLine%24);
+		document.getElementById("StoryText").value = story.Chapters[0].Story;
+		document.getElementById("Choice1").value = story.Chapters[0].Answers[0];
+		document.getElementById("Choice2").value = story.Chapters[0].Answers[1];
+		document.getElementById("Choice3").value = story.Chapters[0].Answers[2];
+		document.getElementById("Choice4").value = story.Chapters[0].Answers[3];
+		/*var next =  story.Chapters[0]["Next chapter"][0];
+		console.log(next);*/
+		document.getElementById("NextChap1").value = story.Chapters[0]["Next chapter"][0];
+		document.getElementById("NextChap2").value = story.Chapters[0]["Next chapter"][1];
+		document.getElementById("NextChap3").value = story.Chapters[0]["Next chapter"][2];
+		document.getElementById("NextChap4").value = story.Chapters[0]["Next chapter"][3];
+		var time;
+		if(story.StartTime==0){
+			time = "00:00";
+		} else {
+			//var time;
+			var minutes = Math.round((story.StartTime%1)*60);
+			if(minutes < 10 && minutes > 0){
+				minutes = "0"+minutes.toString();
+			} else if (minutes == 0){
+				minutes = "00";
+			}
+			console.log(story.StartTime%1*60);
+			console.log(minutes);
+			var hours = Math.floor(story.StartTime/1);
+			if(hours < 10 && hours > 0){
+				hours = "0"+hours.toString();
+			} else if (hours == 0){
+				hours = "00";
+			}
+			time = hours+":"+minutes;
 		}
-		console.log(story.StartTime%1*60);
-		console.log(minutes);
-		var hours = Math.floor(story.StartTime/1);
-		if(hours < 10 && hours > 0){
-			hours = "0"+hours.toString();
-		} else if (hours == 0){
-			hours = "00";
-		}
-		time = hours+":"+minutes;
+		document.getElementById("TaskTime").value = time;
 	}
-	document.getElementById("TaskTime").value = time;
 }
 
 function showChapters(){
+	getData();
+	document.getElementById("nextbutton").onclick = showAllChapters;
+	document.getElementById("clearbutton").onclick = showAllChapters;
+	document.getElementById("savebutton").onclick = saveData;
 	story = JSON.parse(localStorage.getItem('Story'));
+	var status = JSON.parse(localStorage.getItem('Status'));
+
 	if(lastChapt == ""){
 		lastChapt = "default";
 	}
-	//getData();
-	document.getElementById("twodivs").innerHTML = "";
 	var text = "";
-	story.Chapters.forEach(function (chapt, index){
+	for(i= 0; i<status.Chapter.length; i++){
 		text += '<div id="chapter">';
-		for (i = 0; i<4; i++){
-				if(chapt["Next chapter"][i] != ""){
-					var name = chapt["Next chapter"][i];
-					text += `<button id="button" onclick="newChapter('${name}','${lastChapt}')";>`+name+`</button>`;
+				if(status.Chapter[i] != ""){
+					var name = status.Chapter[i];
+					if(status.Status[i] == 1){
+						text += `<button id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+					} else {
+						text += `<button id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+					}
 				}
-			}
 		text += '</div>';
-	});
-	console.log(text)
-	document.getElementById("twodivs").innerHTML = text;
+	};
+	document.getElementById("StoryText").value = "";
+	document.getElementById("Choice1").value = "";
+	document.getElementById("Choice2").value = "";
+	document.getElementById("Choice3").value = "";
+	document.getElementById("Choice4").value = "";
+	document.getElementById("NextChap1").value = "";
+	document.getElementById("NextChap2").value = "";
+	document.getElementById("NextChap3").value = "";
+	document.getElementById("NextChap4").value = "";
+	document.getElementById("ADTT").innerHTML = text;
 }
 
-function newChapter(name, lastChapt){
+function newChapter(name, i){
 	var text = "";
-	text += '<div id="ADTT">'
-	text += '<h2>How much did this choice change your attributes?</h2>';
-	text += '<label>Autonomy:</label>    <input id="StatAutonomy" min="-100" max="100" type="number" placeholder="Level of autonomy"><br><br>';
-	text += '<label>Competence:</label>  <input id="StatCompetence" type="number"placeholder="Level of competence"><br><br>'
-	text += '<label>Relatedness:</label> <input id="StatRelatedness" type="number" placeholder="Level of relatedness"><br><br>';
-	text += '<label>Stress:</label>      <input id="StatStress" type="number" placeholder="Level of stress"><br><br>';
-	text += '<label>Fatigue:</label>     <input id="StatFatigue" type="number" placeholder="Level of fatigue"><br><br>';
-	text += '</div>';
-	text += '<div id="textandchoices">';
-	text += '<h2>Write your story and create your choices.</h2>';
-	text += '<label>Story text:</label> <textarea id="StoryText" rows="5" cols="43" placeholder="Insert your story here."></textarea> <br><br>';
-	text += '<label>Choice 1: </label> <textarea id="Choice1" rows="2" cols="20" placeholder="Insert your first choice here."></textarea> <textarea id="NextChap1" rows="2" cols="20" placeholder="Next chapter"></textarea><br><br>';
-	text += '<label>Choice 2: </label> <textarea id="Choice2" rows="2" cols="20" placeholder="Insert your second choice here."></textarea> <textarea id="NextChap2" rows="2" cols="20" placeholder="Next chapter"></textarea><br><br>';
-	text += '<label>Choice 3: </label> <textarea id="Choice3" rows="2" cols="20" placeholder="Insert your third choice here."></textarea> <textarea id="NextChap3" rows="2" cols="20" placeholder="Next chapter"></textarea><br><br>';
-	text += '<label>Choice 4: </label> <textarea id="Choice4" rows="2" cols="20" placeholder="Insert your fourth choice here."></textarea> <textarea id="NextChap4" rows="2" cols="20" placeholder="Next chapter"></textarea><br><br>';
-	text += '<input type="button" value="Back" id="backbutton" class="button">';
-	text += '<input type="button" value="Next" id="nextbutton" class="button">';
-	text += `<input type="button" value="Save" id="saveChapter" onclick="saveChapter('${name}','${lastChapt}')" class="button">`;
-	text += '<input type="button" value="Edit" id="editbutton" class="button">';
-	text += '</div>';
-	document.getElementById("twodivs").innerHTML = text;
-	document.getElementById("editbutton").onclick = editStory;
+	window.index = i;
+	var status = JSON.parse(localStorage.getItem('Status'));
+	if(status.Status[i] == 1){
+		loadData(name, i);
+	} else {
+		document.getElementById("StoryText").value = "";
+		document.getElementById("Choice1").value = "";
+		document.getElementById("Choice2").value = "";
+		document.getElementById("Choice3").value = "";
+		document.getElementById("Choice4").value = "";
+		document.getElementById("NextChap1").value = "";
+		document.getElementById("NextChap2").value = "";
+		document.getElementById("NextChap3").value = "";
+		document.getElementById("NextChap4").value = "";
+	}
 }
 
-function saveChapter(name, lastChapt){
+function loadData(name, i){
+	var index = Math.floor(((i-1)/4)+1);
+	document.getElementById("StoryText").value = story.Chapters[index].Story;
+	document.getElementById("Choice1").value = story.Chapters[index].Answers[0];
+	document.getElementById("Choice2").value = story.Chapters[index].Answers[1];
+	document.getElementById("Choice3").value = story.Chapters[index].Answers[2];
+	document.getElementById("Choice4").value = story.Chapters[index].Answers[3];
+	document.getElementById("NextChap1").value = story.Chapters[index]["Next chapter"][0];
+	document.getElementById("NextChap2").value = story.Chapters[index]["Next chapter"][1];
+	document.getElementById("NextChap3").value = story.Chapters[index]["Next chapter"][2];
+	document.getElementById("NextChap4").value = story.Chapters[index]["Next chapter"][3];
+}
+
+
+function showAllChapters(){
+	story = JSON.parse(localStorage.getItem('Story'));
+	var status = JSON.parse(localStorage.getItem('Status'));
+	var text = "";
+	for(i= 0; i<status.Chapter.length; i++){
+		text += '<div id="chapter">';
+				if(status.Chapter[i] != ""){
+					var name = status.Chapter[i];
+					if(status.Status[i] == 1){
+						text += `<button id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+					} else {
+						text += `<button id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+					}
+				}
+		text += '</div>';
+	};
+	document.getElementById("StoryText").value = "";
+	document.getElementById("Choice1").value = "";
+	document.getElementById("Choice2").value = "";
+	document.getElementById("Choice3").value = "";
+	document.getElementById("Choice4").value = "";
+	document.getElementById("NextChap1").value = "";
+	document.getElementById("NextChap2").value = "";
+	document.getElementById("NextChap3").value = "";
+	document.getElementById("NextChap4").value = "";
+	document.getElementById("ADTT").innerHTML = text;
+}
+
+function saveData(){
+	var name = JSON.parse(localStorage.getItem('Status'));
+	story = JSON.parse(localStorage.getItem('Story'));
+	name = name.Chapter[index];
 	var chapt = {};
 	var answers = [];
 	chapt = new game($("#StoryText").val(), "", name);
-	addPoints(name);
 	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val())
 	chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
+	var i = Math.floor(((index-1)/4)+1);
 	story.Chapters.forEach(function (chap, index){
 		if(chap.Chapter == name){
-			story.Chapters.splice(index, 1);
+			story.Chapters.splice(i, 1);
 		}
 	});
 	story.Chapters.push(chapt);
-	lastChapt = name;
-	saveStoryLocal();
-}
-
-function addPoints(name){
-	console.log(name);
-	var points = [];
+	var status = new ChapterStatus();
+	status.Chapter.push("default");
+	status.Status.push(1);
 	story.Chapters.forEach(function (chapt, index){
-		if(chapt.Chapter == lastChapt){
-			for (i = 0; i<4; i++){
-				if(chapt["Next chapter"][i] == name){
-					points.push(parseInt($("#StatAutonomy").val()), parseInt($("#StatRelatedness").val()), parseInt($("#StatCompetence").val()), parseInt($("#StatStress").val()), parseInt($("#StatFatigue").val()));
-					console.log(chapt.Points[i]);
-					chapt.Points["Answer"+(i+1)] = points;
-					console.log(chapt);
-				}
-			}
-		}
-	});
-}
-
-function editStory(){
-	console.log("Edit story function started!");
-	story = JSON.parse(localStorage.getItem("Story"));
-	document.getElementById("twodivs").innerHTML = "";
-	story.Chapters.forEach(function (chapt, index){
-		text += '<div id="chapter">';
 		for (i = 0; i<4; i++){
-				if(chapt["Next chapter"][i] != ""){
 					var name = chapt["Next chapter"][i];
-					text += `<button id="button";>`+name+`</button>`;
-				}
+					status.Chapter.push(chapt["Next chapter"][i]);
+					status.Status.push(0);
 			}
-		text += '</div>';
 	});
+	status.Status[index]=1;
+	saveStoryLocal(status);
+	showAllChapters();
 }
