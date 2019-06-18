@@ -41,8 +41,8 @@ $(document).ready(function() {
 
 		getData();
 		function getData(){
-			var url = "Story.json";
-			$.getJSON( "Story.json", function(data){
+			var url = "test.json";
+			$.getJSON( url, function(data){
 				story = data;
 			});
 		}
@@ -59,29 +59,30 @@ $(document).ready(function() {
 		setTimeout(function test(){
 			document.getElementById("restart2").onclick = startGame;
 			function setStory(){
-				gameStory = new storyGame(story.Starting, story.Deadline, story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
+				gameStory = new storyGame(parseInt(story.StartTime), parseInt(story.DeadLine), story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
 				oldGame = Object.assign({}, gameStory);
 				motivEval = story.Motivation;
 				gameStory.rmotivation =  eval(motivEval);
-				story.Game.forEach(function (chapt, index){
+				story.Chapters.forEach(function (chapt, index){
 				question.push(chapt.Question);
 				game.push(chapt.Story);
 				chapter.push(chapt.Chapter);
 				var i;
 				for (i = 1; i<5; i++){
 					var temp = chapt.Points["Answer"+i];
-					autonomys.push(temp[0]);
-					relatednesses.push(temp[1]);
-					competences.push(temp[2]);
-					stresses.push(temp[3]);
-					fatigues.push(temp[4]);
-					progresses.push(temp[5]);
-					time.push(chapt.Time[i-1]);
+					autonomys.push(parseInt(temp[0]));
+					relatednesses.push(parseInt(temp[1]));
+					competences.push(parseInt(temp[2]));
+					stresses.push(parseInt(temp[3]));
+					fatigues.push(parseInt(temp[4]));
+					progresses.push(parseInt(temp[5]));
+					time.push(parseInt(chapt.Time[i-1]));
 					answer.push(chapt.Answers[i-1]);
 					var nextChapt = chapt["Next chapter"][i-1];
 					next.push(nextChapt);
 					}
 				});
+					console.log(story);
 			}
 			//console.log(stress);
 			function changeData(answer){
@@ -168,8 +169,14 @@ $(document).ready(function() {
 				setStory();
 				progressStr();
 				id = 0;
+				for(var i of chapter){
+					if(i == "default"){
+						id = chapter.indexOf(i);
+					}
+				}
+				console.log(id);
 				var i = 0;
-				document.getElementById("textarea").innerHTML = game[0];
+				document.getElementById("textarea").innerHTML = game[id];
 				document.getElementById("header").style.visibility = 'visible';
 				document.getElementById("bottom").style.visibility = 'visible';
 				document.getElementById("Auto").innerHTML = gameStory.autonomy+"%";
@@ -211,6 +218,7 @@ $(document).ready(function() {
 				var gameStart = "Day "+ Math.floor(gameStory.startTime/24+1) + ", "+ Math.floor(gameStory.startTime%24) +":"+ minutes;
 
 				document.getElementById("Today").innerHTML = "Today: "+gameStart;
+				console.log(answer);
 				if(answer[(id*4)] == ""){
 					document.getElementById("button1").style.visibility = 'hidden';
 				} else {

@@ -39,14 +39,15 @@ var points = [];
 var answers = 0;
 var interval;
 var placeHolder = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Time"];
+var uniqueFilename;
 
 $(document).ready(function() {
+	uniqueFilename = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + ".json";
+	document.getElementById("loadbutton").href = "tmp/"+uniqueFilename;
 	//save
 	document.getElementById("savebutton").onclick = showChapters;
 	//next
 	document.getElementById("nextbutton").onclick = showChapters;
-	//back
-	document.getElementById("backbutton").onclick = getSavedData;
  	interval = setInterval(getSavedData, 100);
 });
 
@@ -57,7 +58,7 @@ function getData(){
 	var answers = [];
 	var id;
 	if (localStorage.getItem("Story") === null) {
-		story = new storyGame(startTime, endTime, 0, parseInt($("#StatCompetence").val()), parseInt($("#StatRelatedness").val()), parseInt($("#StatAutonomy").val()), parseInt($("#StatStress").val()), parseInt($("#StatFatigue").val()), $("#TaskText").val());
+		story = new storyGame(startTime, endTime+startTime, 0, parseInt($("#StatCompetence").val()), parseInt($("#StatRelatedness").val()), parseInt($("#StatAutonomy").val()), parseInt($("#StatStress").val()), parseInt($("#StatFatigue").val()), $("#TaskText").val());
 	} else {
 		story = JSON.parse(localStorage.getItem('Story'));
 		for(var i of story.Chapters){
@@ -143,8 +144,8 @@ function saveStory(){
 				type: "GET",
 				dataType : 'json',
 				async: false,
-				url: 'save_json.php',
-				data: { data: JSON.stringify(story) },
+				url: 'tmp/save_json.php',
+				data: { data: JSON.stringify(story), story: uniqueFilename },
 				success: function () {alert("Thanks!"); },
 				failure: function() {alert("Error!");}
 		});
@@ -217,13 +218,63 @@ function showChapters(){
 				if(status.Chapter[i] != ""){
 					var name = status.Chapter[i];
 					if(status.Status[i] == 1){
-						text += `<button id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+						text += `<button id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
 					} else {
-						text += `<button id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+						text += `<button id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
 					}
 				}
 		text += '</div>';
 	};
+	document.getElementById("ADTT").innerHTML = text;
+	cleanBoxes();
+	disableBoxes();
+}
+
+function disableBoxes(){
+	document.getElementById("StoryText").disabled = true;
+	document.getElementById("Choice1").disabled = true;
+	document.getElementById("Choice2").disabled = true;
+	document.getElementById("Choice3").disabled = true;
+	document.getElementById("Choice4").disabled = true;
+	document.getElementById("NextChap1").disabled = true;
+	document.getElementById("NextChap2").disabled = true;
+	document.getElementById("NextChap3").disabled = true;
+	document.getElementById("NextChap4").disabled = true;
+	document.getElementById("savebutton").disabled = true;
+	for(i=1; i<6; i++){
+			document.getElementById("dropdown"+i).disabled = true;
+			document.getElementById("dropdown"+(i+5)).disabled = true;
+			document.getElementById("dropdown"+(i+15)).disabled = true;
+			document.getElementById("dropdown1"+i).disabled = true;
+	}
+	for(i=1; i<5; i++){
+		document.getElementById("dropdown"+(20+i)).disabled = true;
+	}
+}
+
+function enableBoxes(){
+	document.getElementById("StoryText").disabled = false;
+	document.getElementById("Choice1").disabled = false;
+	document.getElementById("Choice2").disabled = false;
+	document.getElementById("Choice3").disabled = false;
+	document.getElementById("Choice4").disabled = false;
+	document.getElementById("NextChap1").disabled = false;
+	document.getElementById("NextChap2").disabled = false;
+	document.getElementById("NextChap3").disabled = false;
+	document.getElementById("NextChap4").disabled = false;
+	document.getElementById("savebutton").disabled = false;
+	for(i=1; i<6; i++){
+			document.getElementById("dropdown"+i).disabled = false;
+			document.getElementById("dropdown"+(i+5)).disabled = false;
+			document.getElementById("dropdown"+(i+15)).disabled = false;
+			document.getElementById("dropdown1"+i).disabled = false;
+	}
+	for(i=1; i<5; i++){
+		document.getElementById("dropdown"+(20+i)).disabled = false;
+	}
+}
+
+function cleanBoxes(){
 	document.getElementById("StoryText").value = "";
 	document.getElementById("Choice1").value = "";
 	document.getElementById("Choice2").value = "";
@@ -233,7 +284,6 @@ function showChapters(){
 	document.getElementById("NextChap2").value = "";
 	document.getElementById("NextChap3").value = "";
 	document.getElementById("NextChap4").value = "";
-	document.getElementById("ADTT").innerHTML = text;
 	for(i=1; i<6; i++){
 			document.getElementById("dropdown"+i).value = placeHolder[i-1];
 			document.getElementById("dropdown"+(i+5)).value = placeHolder[i-1];
@@ -252,28 +302,13 @@ function newChapter(name, i){
 	if(status.Status[i] == 1){
 		loadData(name, i);
 	} else {
-		document.getElementById("StoryText").value = "";
-		document.getElementById("Choice1").value = "";
-		document.getElementById("Choice2").value = "";
-		document.getElementById("Choice3").value = "";
-		document.getElementById("Choice4").value = "";
-		document.getElementById("NextChap1").value = "";
-		document.getElementById("NextChap2").value = "";
-		document.getElementById("NextChap3").value = "";
-		document.getElementById("NextChap4").value = "";
-		for(i=1; i<6; i++){
-				document.getElementById("dropdown"+i).value = placeHolder[i-1];
-				document.getElementById("dropdown"+(i+5)).value = placeHolder[i-1];
-				document.getElementById("dropdown"+(i+15)).value = placeHolder[i-1];
-				document.getElementById("dropdown1"+i).value = placeHolder[i-1];
-		}
-		for(i=1; i<5; i++){
-			document.getElementById("dropdown"+(20+i)).value = placeHolder[5];
-		}
+		cleanBoxes();
+		enableBoxes();
 	}
 }
 
 function loadData(name, i){
+	enableBoxes();
 	var status = JSON.parse(localStorage.getItem('Status'));
 	story = JSON.parse(localStorage.getItem('Story'));
 	for(var index of story.Chapters){
@@ -296,8 +331,10 @@ function loadData(name, i){
 			document.getElementById("dropdown1"+i).value = story.Chapters[id].Points.Answer3[i-1];
 			document.getElementById("dropdown"+(i+15)).value = story.Chapters[id].Points.Answer4[i-1];
 	}
-	for(i=0; i<5; i++){
+	for(i=0; i<4; i++){
 		document.getElementById("dropdown"+(i+21)).value = story.Chapters[id].Time[i];
+		/*console.log("dropdown"+(i+21));
+		console.log(story.Chapters[id].Time[i]);*/
 	}
 }
 
@@ -318,25 +355,9 @@ function showAllChapters(){
 				}
 		text += '</div>';
 	};
-	document.getElementById("StoryText").value = "";
-	document.getElementById("Choice1").value = "";
-	document.getElementById("Choice2").value = "";
-	document.getElementById("Choice3").value = "";
-	document.getElementById("Choice4").value = "";
-	document.getElementById("NextChap1").value = "";
-	document.getElementById("NextChap2").value = "";
-	document.getElementById("NextChap3").value = "";
-	document.getElementById("NextChap4").value = "";
-	document.getElementById("ADTT").innerHTML = text;
-	for(i=1; i<6; i++){
-			document.getElementById("dropdown"+i).value = placeHolder[i-1];
-			document.getElementById("dropdown"+(i+5)).value = placeHolder[i-1];
-			document.getElementById("dropdown"+(i+15)).value = placeHolder[i-1];
-			document.getElementById("dropdown1"+i).value = placeHolder[i-1];
-	}
-	for(i=1; i<5; i++){
-		document.getElementById("dropdown"+(20+i)).value = placeHolder[5];
-	}
+	cleanBoxes();
+	disableBoxes();
+	console.log(story);
 }
 
 function saveData(){
