@@ -86,3 +86,25 @@
   select:focus{
     border: 2px solid blue;
   }
+
+
+  #button{
+    background-color: white;
+    float: left;
+    color: black;
+    border: 2px solid orange;
+    padding: 8px 2px;
+    width: 20%;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  #button:hover{
+    background-color: orange;
+    color: white;
+  }
