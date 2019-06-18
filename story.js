@@ -59,7 +59,7 @@ $(document).ready(function() {
 		setTimeout(function test(){
 			document.getElementById("restart2").onclick = startGame;
 			function setStory(){
-				gameStory = new storyGame(parseInt(story.StartTime), parseInt(story.DeadLine), story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
+				gameStory = new storyGame(story.Starting, story.Deadline, story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
 				oldGame = Object.assign({}, gameStory);
 				motivEval = story.Motivation;
 				gameStory.rmotivation =  eval(motivEval);
@@ -77,14 +77,14 @@ $(document).ready(function() {
 					fatigues.push(parseInt(temp[4]));
 					progresses.push(parseInt(temp[5]));
 					time.push(parseInt(chapt.Time[i-1]));
-					answer.push(chapt.Answers[i-1]);
+					answer.push(parseInt(chapt.Answers[i-1]));
 					var nextChapt = chapt["Next chapter"][i-1];
 					next.push(nextChapt);
 					}
-				});
 					console.log(story);
+				});
 			}
-
+			
 			function changeData(answer){
 				gameStory.autonomy += autonomys[answer];
 				changes(autonomys[answer], "autonomy");
@@ -125,7 +125,7 @@ $(document).ready(function() {
 			startGame();
 			function progressStr(){
 				var progressStatus;
-				if (gameStory.progress == 0) {
+				if (gameStory.progress == 0) { 
 					progressStatus = "Not started";
 				} else if (gameStory.progress >= 1 && gameStory.progress <=10){
 					progressStatus = "Just started";
@@ -176,7 +176,7 @@ $(document).ready(function() {
 				}
 				console.log(id);
 				var i = 0;
-				document.getElementById("textarea").innerHTML = game[id];
+				document.getElementById("textarea").innerHTML = game[0];
 				document.getElementById("header").style.visibility = 'visible';
 				document.getElementById("bottom").style.visibility = 'visible';
 				document.getElementById("Auto").innerHTML = gameStory.autonomy+"%";
@@ -218,7 +218,6 @@ $(document).ready(function() {
 				var gameStart = "Day "+ Math.floor(gameStory.startTime/24+1) + ", "+ Math.floor(gameStory.startTime%24) +":"+ minutes;
 
 				document.getElementById("Today").innerHTML = "Today: "+gameStart;
-				console.log(answer);
 				if(answer[(id*4)] == ""){
 					document.getElementById("button1").style.visibility = 'hidden';
 				} else {
@@ -350,3 +349,8 @@ $(document).ready(function() {
 			}
 	 }, 100);
 });
+
+function infoPop(){
+	var popup = document.getElementById("popup");
+	popup.classList.toggle("show");
+} 
