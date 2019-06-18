@@ -38,7 +38,7 @@ var story = {};
 var points = [];
 var answers = 0;
 var interval;
-var placeHolder = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Time"];
+var placeHolder = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Time", "Progress"];
 var uniqueFilename;
 
 $(document).ready(function() {
@@ -71,10 +71,10 @@ function getData(){
 	chapt = new game($("#StoryText").val(), "", "default");
 	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val())
 	chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
-	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
-	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
-	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
-	chapt.Points["Answer4"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
+	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
+	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
+	chapt.Points["Answer4"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Time = ["Time", "Time", "Time", "Time"];
 	for(j=1;j<6;j++){
 		chapt.Points.Answer1[j-1]=$("#dropdown"+j).val();
@@ -84,6 +84,7 @@ function getData(){
 	}
 	for(j=1;j<5;j++){
 		chapt.Time[j-1] = $("#dropdown2"+j).val();
+		chapt.Points["Answer" + j][5]=$("#dropdown" + (j+24)).val();
 	}
 	story.Chapters.push(chapt);
 	var status = new ChapterStatus();
@@ -93,15 +94,22 @@ function getData(){
 	story.Chapters.forEach(function (chapt, index){
 		for (i = 0; i<4; i++){
 					var name = chapt["Next chapter"][i];
-					status.Status.push(0);
-					status.Chapter.push(chapt["Next chapter"][i]);
-					story.Chapters.forEach(function (chapt2, index2){
-						if(name == chapt2.Chapter){
-							status.Status[total] = 1;
-						} else {
+					var newS = 1;
+					for(j = 0; j<status.Chapter.length; j++){
+						if(status.Chapter[j] == name){
+							newS = 0;
 						}
-					});
-					total++;
+					}
+					if(newS == 1){
+						status.Status.push(0);
+						status.Chapter.push(name);
+						story.Chapters.forEach(function (chapt2){
+							if(name == chapt2.Chapter){
+								status.Status[total] = 1;
+							}
+						});
+						total++;
+					}
 			}
 	});
 	saveStoryLocal(status);
@@ -173,6 +181,7 @@ function getSavedData(){
 		for(i=0; i<4; i++){
 			document.getElementById("Choice"+(i+1)).value = story.Chapters[id].Answers[i];
 			var tempName = story.Chapters[id].Points["Answer"+(i+1)];
+			document.getElementById("dropdown"+(25+i)).value = tempName[5];
 			document.getElementById("dropdown2"+(i+1)).value = story.Chapters[id].Time[i];
 			if(story.Chapters[id].Points["Answer"+(i+1)].length > 0){
 				for(j=1;j<6;j++){
@@ -218,9 +227,9 @@ function showChapters(){
 				if(status.Chapter[i] != ""){
 					var name = status.Chapter[i];
 					if(status.Status[i] == 1){
-						text += `<button id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
+						text += `<button class="chapterbutton" id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
 					} else {
-						text += `<button id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
+						text += `<button class="chapterbutton" id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
 					}
 				}
 		text += '</div>';
@@ -249,6 +258,7 @@ function disableBoxes(){
 	}
 	for(i=1; i<5; i++){
 		document.getElementById("dropdown"+(20+i)).disabled = true;
+		document.getElementById("dropdown"+(24+i)).disabled = true;
 	}
 }
 
@@ -271,6 +281,7 @@ function enableBoxes(){
 	}
 	for(i=1; i<5; i++){
 		document.getElementById("dropdown"+(20+i)).disabled = false;
+		document.getElementById("dropdown"+(24+i)).disabled = false;
 	}
 }
 
@@ -292,6 +303,7 @@ function cleanBoxes(){
 	}
 	for(i=1; i<5; i++){
 		document.getElementById("dropdown"+(20+i)).value = placeHolder[5];
+		document.getElementById("dropdown"+(24+i)).value = placeHolder[6];
 	}
 }
 
@@ -333,8 +345,7 @@ function loadData(name, i){
 	}
 	for(i=0; i<4; i++){
 		document.getElementById("dropdown"+(i+21)).value = story.Chapters[id].Time[i];
-		/*console.log("dropdown"+(i+21));
-		console.log(story.Chapters[id].Time[i]);*/
+		document.getElementById("dropdown"+(25+i)).value = story.Chapters[id].Points["Answer"+(i+1)][5];
 	}
 }
 
@@ -355,9 +366,9 @@ function showAllChapters(){
 				}
 		text += '</div>';
 	};
+	document.getElementById("ADTT").innerHTML = text;
 	cleanBoxes();
 	disableBoxes();
-	console.log(story);
 }
 
 function saveData(){
@@ -370,10 +381,10 @@ function saveData(){
 	chapt = new game($("#StoryText").val(), "", name);
 	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val());
 	chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
-	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
-	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
-	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
-	chapt.Points["Answer4"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
+	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
+	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
+	chapt.Points["Answer4"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Time = ["Time", "Time", "Time", "Time"];
 	for(j=1;j<6;j++){
 		chapt.Points.Answer1[j-1]=$("#dropdown"+j).val();
@@ -383,15 +394,14 @@ function saveData(){
 	}
 	for(j=1;j<5;j++){
 		chapt.Time[j-1] = $("#dropdown2"+j).val();
+		chapt.Points["Answer" + j][5]=$("#dropdown" + (j+24)).val();
 	}
 	story.Chapters.forEach(function (chap, index){
 		if(chap.Chapter == name){
 			id = index;
 		}
 	});
-	console.log(id);
 	if(id !== -1){
-		console.log("töötab");
 		story.Chapters.splice(id, 1);
 	}
 	story.Chapters.push(chapt);
@@ -402,15 +412,22 @@ function saveData(){
 	story.Chapters.forEach(function (chapt, index){
 		for (i = 0; i<4; i++){
 					var name = chapt["Next chapter"][i];
-					status.Status.push(0);
-					status.Chapter.push(chapt["Next chapter"][i]);
-					story.Chapters.forEach(function (chapt2, index2){
-						if(name == chapt2.Chapter){
-							status.Status[total] = 1;
-						} else {
+					var newS = 1;
+					for(j = 0; j<status.Chapter.length; j++){
+						if(status.Chapter[j] == name){
+							newS = 0;
 						}
-					});
-					total++;
+					}
+					if(newS == 1){
+						status.Status.push(0);
+						status.Chapter.push(name);
+						story.Chapters.forEach(function (chapt2){
+							if(name == chapt2.Chapter){
+								status.Status[total] = 1;
+							}
+						});
+						total++;
+					}
 			}
 	});
 	status.Status[index]=1;
