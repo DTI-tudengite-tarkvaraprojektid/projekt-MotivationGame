@@ -84,7 +84,7 @@ $(document).ready(function() {
 				});
 					console.log(story);
 			}
-			//console.log(stress);
+
 			function changeData(answer){
 				gameStory.autonomy += autonomys[answer];
 				changes(autonomys[answer], "autonomy");
@@ -125,7 +125,7 @@ $(document).ready(function() {
 			startGame();
 			function progressStr(){
 				var progressStatus;
-				if (gameStory.progress == 0) { //progressi if, sõnadega
+				if (gameStory.progress == 0) {
 					progressStatus = "Not started";
 				} else if (gameStory.progress >= 1 && gameStory.progress <=10){
 					progressStatus = "Just started";
@@ -197,7 +197,7 @@ $(document).ready(function() {
 				document.getElementById("Prog").innerHTML = gameStory.progress+"%";
 				document.getElementById("Prog").style.width = gameStory.progress+'%';
 				changeBarColor("Prog", gameStory.progress);
-				document.getElementById("Task").innerHTML = "Task: "+gameStory.task;//parseFloat(this.value).toFixed(2);
+				document.getElementById("Task").innerHTML = "Task: "+gameStory.task;
 
 				var minutesDead = Math.floor(gameStory.deadLine-gameStory.deadLine%24);
 				if(minutesDead < 10){
