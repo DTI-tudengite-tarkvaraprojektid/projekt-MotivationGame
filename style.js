@@ -35,4 +35,9 @@ $(document).ready(function(){
       $("#dropdown"+j).append("<option value="+i+">"+i+"</option>");
     }
   }
+  for(i = 0; i <= 100; i++){
+    for(j = 25; j < 29; j++){
+      $("#dropdown"+j).append("<option value="+i+">"+i+"</option>");
+    }
+  }
 });
