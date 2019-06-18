@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="jquery.min.js"></script>
-  <script src="CreateStory.js"></script>
   <script src="style.js"></script>
+  <script src="CreateStory.js"></script>
   <title>Motivation game story creator</title>
 </head>
 <body>
@@ -56,14 +56,14 @@
       <select name="Time change" id="dropdown23" class="DDown"><option selected hidden>Time</option></select><br>
       <hr>
       <label>Choice 4: </label> <textarea id="Choice4" rows="2" cols="20" placeholder="Insert your fourth choice here."></textarea> <textarea id="NextChap4" rows="2" cols="20" placeholder="Next chapter"></textarea><br>
-      <select name="Autonomy change" id="dropdown16" class="DDown"><option selected hidden>Autonomy</option></select> 
+      <select name="Autonomy change" id="dropdown16" class="DDown"><option selected hidden>Autonomy</option></select>
       <select name="Competence change" id="dropdown17" class="DDown"><option selected hidden>Competence</option></select>
       <select name="Relatedness change" id="dropdown18" class="DDown"><option selected hidden>Relatedness</option></select>
       <select name="Stress change" id="dropdown19" class="DDown"><option selected hidden>Stress</option></select>
       <select name="Fatigue change" id="dropdown20" class="DDown"><option selected hidden>Fatigue</option></select>
       <select name="Time change" id="dropdown24" class="DDown"><option selected hidden>Time</option></select><br>
       <hr>
-      <input type="button" value="Load" id="backbutton" class="button">
+      <a type="button" value="Load" href="general.json" id="loadbutton" download="myStory.json" class="button">Download file</a>
       <input type="button" value="Next" id="nextbutton" class="button">
       <input type="button" value="Save" id="savebutton" class="button">
       <input type="button" value="Clear" id="clearbutton" class="button" onClick="window.location.href=window.location.href">
