@@ -1,20 +1,11 @@
 checkMobileInd();
 function checkMobileInd(){
-  if (window.location == "http://www.tlu.ee/~mamba/uus/"){
+  if (window.location == "index.html"){
     if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       window.location = "indexmobile.html";
     }
   }
 }
-
-// checkMobileSel();   kui teeme game selectori lehe
-// function checkMobileSel(){
-//   if (window.location == "http://www.tlu.ee/~mamba/uus/gameselector.html"){
-//     if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-//       window.location = "gameselectormobile.html";
-//     }
-//   }
-// }
 
 window.onscroll = function() {myFunction();};
 
@@ -32,3 +23,16 @@ function myFunction() {
 function clearContents(element) {
   element.value = '';
 }
+
+$(document).ready(function(){
+  for(i = -100; i <= 100; i++){
+    for(j = 1; j < 21; j++){
+      $("#dropdown"+j).append("<option value="+i+">"+i+"</option>");
+    }
+  }
+  for(i = 0; i <= 480; i++){
+    for(j = 21; j < 25; j++){
+      $("#dropdown"+j).append("<option value="+i+">"+i+"</option>");
+    }
+  }
+});

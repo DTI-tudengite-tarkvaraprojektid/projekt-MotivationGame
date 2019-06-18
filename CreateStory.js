@@ -35,44 +35,72 @@ class ChapterStatus{
 }
 
 var story = {};
-var lastChapt = "";
-var index = 0;
+var points = [];
+var answers = 0;
+var interval;
+var placeHolder = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Time"];
 
 $(document).ready(function() {
 	//save
-	document.getElementById("savebutton").onclick = getData;
+	document.getElementById("savebutton").onclick = showChapters;
 	//next
 	document.getElementById("nextbutton").onclick = showChapters;
 	//back
 	document.getElementById("backbutton").onclick = getSavedData;
-
-	getSavedData();
+ 	interval = setInterval(getSavedData, 100);
 });
 
 function getData(){
 	var endTime = getEndTime();
 	var startTime = getStartTime();
 	var chapt = {};
+	var answers = [];
+	var id;
 	if (localStorage.getItem("Story") === null) {
 		story = new storyGame(startTime, endTime, 0, parseInt($("#StatCompetence").val()), parseInt($("#StatRelatedness").val()), parseInt($("#StatAutonomy").val()), parseInt($("#StatStress").val()), parseInt($("#StatFatigue").val()), $("#TaskText").val());
-		chapt = new game($("#StoryText").val(), "", "default");
-		chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val())
-		chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
-		story.Chapters.push(chapt);
 	} else {
 		story = JSON.parse(localStorage.getItem('Story'));
-		/*if(chap.Chapter == name){
-			story.Chapters.splice(index, 1);
-		}*/
+		for(var i of story.Chapters){
+			if(i.Chapter == "default"){
+				id = story.Chapters.indexOf(i);
+			}
+		}
+		story.Chapters.splice(id, 1);
 	}
+	chapt = new game($("#StoryText").val(), "", "default");
+	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val())
+	chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
+	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Points["Answer4"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Time = ["Time", "Time", "Time", "Time"];
+	for(j=1;j<6;j++){
+		chapt.Points.Answer1[j-1]=$("#dropdown"+j).val();
+		chapt.Points.Answer2[j-1]=$("#dropdown"+(j+5)).val();
+		chapt.Points.Answer3[j-1]=$("#dropdown"+(j+10)).val();
+		chapt.Points.Answer4[j-1]=$("#dropdown"+(j+15)).val();
+	}
+	for(j=1;j<5;j++){
+		chapt.Time[j-1] = $("#dropdown2"+j).val();
+	}
+	story.Chapters.push(chapt);
 	var status = new ChapterStatus();
 	status.Chapter.push("default");
 	status.Status.push(1);
+	var total = 1;
 	story.Chapters.forEach(function (chapt, index){
 		for (i = 0; i<4; i++){
 					var name = chapt["Next chapter"][i];
-					status.Chapter.push(chapt["Next chapter"][i]);
 					status.Status.push(0);
+					status.Chapter.push(chapt["Next chapter"][i]);
+					story.Chapters.forEach(function (chapt2, index2){
+						if(name == chapt2.Chapter){
+							status.Status[total] = 1;
+						} else {
+						}
+					});
+					total++;
 			}
 	});
 	saveStoryLocal(status);
@@ -106,6 +134,7 @@ function getStartTime(){
 function saveStoryLocal(c){
 	localStorage.setItem('Story', JSON.stringify(story));
 	localStorage.setItem('Status', JSON.stringify(c));
+	saveStory();
 }
 
 function saveStory(){
@@ -119,11 +148,11 @@ function saveStory(){
 				success: function () {alert("Thanks!"); },
 				failure: function() {alert("Error!");}
 		});
-		console.log(story);
 }
 
 function getSavedData(){
 	story = JSON.parse(localStorage.getItem('Story'));
+	var id;
 	if (localStorage.getItem("Story") !== null) {
 		document.getElementById("StatCompetence").value = story.Competence;
 		document.getElementById("StatRelatedness").value = story.Relatedness;
@@ -133,17 +162,24 @@ function getSavedData(){
 		document.getElementById("TaskText").value = story.Task;
 		document.getElementById("DaysToComplete").value = Math.floor(story.DeadLine/24);
 		document.getElementById("HoursToComplete").value = Math.floor(story.DeadLine%24);
-		document.getElementById("StoryText").value = story.Chapters[0].Story;
-		document.getElementById("Choice1").value = story.Chapters[0].Answers[0];
-		document.getElementById("Choice2").value = story.Chapters[0].Answers[1];
-		document.getElementById("Choice3").value = story.Chapters[0].Answers[2];
-		document.getElementById("Choice4").value = story.Chapters[0].Answers[3];
-		/*var next =  story.Chapters[0]["Next chapter"][0];
-		console.log(next);*/
-		document.getElementById("NextChap1").value = story.Chapters[0]["Next chapter"][0];
-		document.getElementById("NextChap2").value = story.Chapters[0]["Next chapter"][1];
-		document.getElementById("NextChap3").value = story.Chapters[0]["Next chapter"][2];
-		document.getElementById("NextChap4").value = story.Chapters[0]["Next chapter"][3];
+		for(var i of story.Chapters){
+			if(i.Chapter == "default"){
+				id = story.Chapters.indexOf(i);
+			}
+		}
+		document.getElementById("dropdown1").value = story.Chapters[id].Points.Answer1[0];
+		document.getElementById("StoryText").value = story.Chapters[id].Story;
+		for(i=0; i<4; i++){
+			document.getElementById("Choice"+(i+1)).value = story.Chapters[id].Answers[i];
+			var tempName = story.Chapters[id].Points["Answer"+(i+1)];
+			document.getElementById("dropdown2"+(i+1)).value = story.Chapters[id].Time[i];
+			if(story.Chapters[id].Points["Answer"+(i+1)].length > 0){
+				for(j=1;j<6;j++){
+					document.getElementById("dropdown"+(5*(i)+j)).value = tempName[j-1];
+				}
+			}
+			document.getElementById("NextChap"+(i+1)).value = story.Chapters[id]["Next chapter"][i];
+		}
 		var time;
 		if(story.StartTime==0){
 			time = "00:00";
@@ -155,8 +191,6 @@ function getSavedData(){
 			} else if (minutes == 0){
 				minutes = "00";
 			}
-			console.log(story.StartTime%1*60);
-			console.log(minutes);
 			var hours = Math.floor(story.StartTime/1);
 			if(hours < 10 && hours > 0){
 				hours = "0"+hours.toString();
@@ -167,6 +201,7 @@ function getSavedData(){
 		}
 		document.getElementById("TaskTime").value = time;
 	}
+		clearInterval(interval);
 }
 
 function showChapters(){
@@ -176,10 +211,6 @@ function showChapters(){
 	document.getElementById("savebutton").onclick = saveData;
 	story = JSON.parse(localStorage.getItem('Story'));
 	var status = JSON.parse(localStorage.getItem('Status'));
-
-	if(lastChapt == ""){
-		lastChapt = "default";
-	}
 	var text = "";
 	for(i= 0; i<status.Chapter.length; i++){
 		text += '<div id="chapter">';
@@ -203,11 +234,20 @@ function showChapters(){
 	document.getElementById("NextChap3").value = "";
 	document.getElementById("NextChap4").value = "";
 	document.getElementById("ADTT").innerHTML = text;
+	for(i=1; i<6; i++){
+			document.getElementById("dropdown"+i).value = placeHolder[i-1];
+			document.getElementById("dropdown"+(i+5)).value = placeHolder[i-1];
+			document.getElementById("dropdown"+(i+15)).value = placeHolder[i-1];
+			document.getElementById("dropdown1"+i).value = placeHolder[i-1];
+	}
+	for(i=1; i<5; i++){
+		document.getElementById("dropdown"+(20+i)).value = placeHolder[5];
+	}
 }
 
 function newChapter(name, i){
 	var text = "";
-	window.index = i;
+	index = i;
 	var status = JSON.parse(localStorage.getItem('Status'));
 	if(status.Status[i] == 1){
 		loadData(name, i);
@@ -221,20 +261,44 @@ function newChapter(name, i){
 		document.getElementById("NextChap2").value = "";
 		document.getElementById("NextChap3").value = "";
 		document.getElementById("NextChap4").value = "";
+		for(i=1; i<6; i++){
+				document.getElementById("dropdown"+i).value = placeHolder[i-1];
+				document.getElementById("dropdown"+(i+5)).value = placeHolder[i-1];
+				document.getElementById("dropdown"+(i+15)).value = placeHolder[i-1];
+				document.getElementById("dropdown1"+i).value = placeHolder[i-1];
+		}
+		for(i=1; i<5; i++){
+			document.getElementById("dropdown"+(20+i)).value = placeHolder[5];
+		}
 	}
 }
 
 function loadData(name, i){
-	var index = Math.floor(((i-1)/4)+1);
-	document.getElementById("StoryText").value = story.Chapters[index].Story;
-	document.getElementById("Choice1").value = story.Chapters[index].Answers[0];
-	document.getElementById("Choice2").value = story.Chapters[index].Answers[1];
-	document.getElementById("Choice3").value = story.Chapters[index].Answers[2];
-	document.getElementById("Choice4").value = story.Chapters[index].Answers[3];
-	document.getElementById("NextChap1").value = story.Chapters[index]["Next chapter"][0];
-	document.getElementById("NextChap2").value = story.Chapters[index]["Next chapter"][1];
-	document.getElementById("NextChap3").value = story.Chapters[index]["Next chapter"][2];
-	document.getElementById("NextChap4").value = story.Chapters[index]["Next chapter"][3];
+	var status = JSON.parse(localStorage.getItem('Status'));
+	story = JSON.parse(localStorage.getItem('Story'));
+	for(var index of story.Chapters){
+		if(index.Chapter == status.Chapter[i]){
+			id = story.Chapters.indexOf(index);
+		}
+	}
+	document.getElementById("StoryText").value = story.Chapters[id].Story;
+	document.getElementById("Choice1").value = story.Chapters[id].Answers[0];
+	document.getElementById("Choice2").value = story.Chapters[id].Answers[1];
+	document.getElementById("Choice3").value = story.Chapters[id].Answers[2];
+	document.getElementById("Choice4").value = story.Chapters[id].Answers[3];
+	document.getElementById("NextChap1").value = story.Chapters[id]["Next chapter"][0];
+	document.getElementById("NextChap2").value = story.Chapters[id]["Next chapter"][1];
+	document.getElementById("NextChap3").value = story.Chapters[id]["Next chapter"][2];
+	document.getElementById("NextChap4").value = story.Chapters[id]["Next chapter"][3];
+	for(i=1; i<6; i++){
+			document.getElementById("dropdown"+i).value = story.Chapters[id].Points.Answer1[i-1];
+			document.getElementById("dropdown"+(i+5)).value = story.Chapters[id].Points.Answer2[i-1];
+			document.getElementById("dropdown1"+i).value = story.Chapters[id].Points.Answer3[i-1];
+			document.getElementById("dropdown"+(i+15)).value = story.Chapters[id].Points.Answer4[i-1];
+	}
+	for(i=0; i<5; i++){
+		document.getElementById("dropdown"+(i+21)).value = story.Chapters[id].Time[i];
+	}
 }
 
 
@@ -264,6 +328,15 @@ function showAllChapters(){
 	document.getElementById("NextChap3").value = "";
 	document.getElementById("NextChap4").value = "";
 	document.getElementById("ADTT").innerHTML = text;
+	for(i=1; i<6; i++){
+			document.getElementById("dropdown"+i).value = placeHolder[i-1];
+			document.getElementById("dropdown"+(i+5)).value = placeHolder[i-1];
+			document.getElementById("dropdown"+(i+15)).value = placeHolder[i-1];
+			document.getElementById("dropdown1"+i).value = placeHolder[i-1];
+	}
+	for(i=1; i<5; i++){
+		document.getElementById("dropdown"+(20+i)).value = placeHolder[5];
+	}
 }
 
 function saveData(){
@@ -272,27 +345,55 @@ function saveData(){
 	name = name.Chapter[index];
 	var chapt = {};
 	var answers = [];
+	var id = -1;
 	chapt = new game($("#StoryText").val(), "", name);
-	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val())
+	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val());
 	chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
-	var i = Math.floor(((index-1)/4)+1);
+	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Points["Answer4"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue"];
+	chapt.Time = ["Time", "Time", "Time", "Time"];
+	for(j=1;j<6;j++){
+		chapt.Points.Answer1[j-1]=$("#dropdown"+j).val();
+		chapt.Points.Answer2[j-1]=$("#dropdown"+(j+5)).val();
+		chapt.Points.Answer3[j-1]=$("#dropdown"+(j+10)).val();
+		chapt.Points.Answer4[j-1]=$("#dropdown"+(j+15)).val();
+	}
+	for(j=1;j<5;j++){
+		chapt.Time[j-1] = $("#dropdown2"+j).val();
+	}
 	story.Chapters.forEach(function (chap, index){
 		if(chap.Chapter == name){
-			story.Chapters.splice(i, 1);
+			id = index;
 		}
 	});
+	console.log(id);
+	if(id !== -1){
+		console.log("töötab");
+		story.Chapters.splice(id, 1);
+	}
 	story.Chapters.push(chapt);
 	var status = new ChapterStatus();
 	status.Chapter.push("default");
 	status.Status.push(1);
+	var total = 1;
 	story.Chapters.forEach(function (chapt, index){
 		for (i = 0; i<4; i++){
 					var name = chapt["Next chapter"][i];
-					status.Chapter.push(chapt["Next chapter"][i]);
 					status.Status.push(0);
+					status.Chapter.push(chapt["Next chapter"][i]);
+					story.Chapters.forEach(function (chapt2, index2){
+						if(name == chapt2.Chapter){
+							status.Status[total] = 1;
+						} else {
+						}
+					});
+					total++;
 			}
 	});
 	status.Status[index]=1;
+	index = 100;
 	saveStoryLocal(status);
 	showAllChapters();
 }

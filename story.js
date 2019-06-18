@@ -47,9 +47,8 @@ $(document).ready(function() {
 			});
 		}
 
-
 		function checkMobile(){
-			if (window.location == "http://www.tlu.ee/~mamba/uus/game.html"){
+			if (window.location == "game.html"){
 				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 	        window.location = "gamemobile.html";
 	    	}
