@@ -1,7 +1,7 @@
 div.a{
-    text-align: center;
+	text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
+	font-size: 40px;
 }
 
 body {
@@ -16,8 +16,13 @@ body {
 }
 
 #txtnbuttons{
-    position: absolute;
-    left: 37%;
+	position: absolute;
+	width: 300px;
+	height: 200px;
+	z-index: 15;
+	top: 50%;
+	left: 47%;
+	margin: -100px 0 0 -150px;
 }
 
 .button {
