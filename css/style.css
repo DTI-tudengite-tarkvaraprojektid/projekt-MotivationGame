@@ -1,0 +1,276 @@
+body{
+  background-color: rgb(173, 216, 230);
+}
+
+#textarea{
+  border: 2px solid #008CBA;
+  border-radius: 10px;
+  background-color: rgb(120, 196, 221);
+  font-family: Georgia, serif;
+  font-size: 26px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 1%;
+  text-align: center;
+  align-content: center;
+  padding: 10px;
+  max-height: 300px;
+  overflow-x: hidden;
+}
+
+#txtnbuttons {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#header {
+  text-align: center;
+  left: 0px;
+  font-family: 'Courier New', Helvetica, Arial, sans-serif;
+}
+
+.header {
+  padding: 10px 14px;
+  background: #555;
+  left: 0px;
+  top: 0;
+  color: #f1f1f1;
+  display: table;
+  width: 98%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 10px; /*Optional*/
+  visibility: hidden;
+}
+
+.footer{
+  text-align: center;
+  left: 0px;
+  font-family: 'Courier New', Helvetica, Arial, sans-serif;
+  padding: 10px 16px;
+  background: #555;
+  color: #f1f1f1;
+  display: table;
+  width: 98%;
+  table-layout: fixed;
+  border-spacing: 10px;
+}
+
+.restart2 {
+  background-color: white;
+  color: black;
+  border: 2px solid orange;
+  padding: 8px 2px;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  position: absolute;
+  right: 2px;
+  bottom: 0;
+}
+
+.restart2:hover {
+  background-color: orange;
+  color: white;
+}
+
+.button {
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#bottom {
+  position: absolute;
+  bottom:0;
+  left:0;
+  visibility: hidden;
+}
+
+.button:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.column
+{
+    display: table-cell;
+    text-align: center;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+
+#ADTT {
+  width: 500px;
+  position: fixed;
+  left: 1%;
+  z-index: -1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#textandchoices {
+  text-align: right;
+  position: fixed;
+  width: 500px;
+  right: 1%;
+  z-index: -1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#Autonomy {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Autonomy>div {
+  background-color: orange; /*Changes the progress bar progression color*/
+  width: 69%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Competence {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Competence>div {
+  background-color: red; /*Changes the progress bar progression color*/
+  width: 15%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Relatedness {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Relatedness>div {
+  background-color: green; /*Changes the progress bar progression color*/
+  width: 75%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Motivation {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Motivation>div {
+  background-color: red; /*Changes the progress bar progression color*/
+  width: 1%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Stress {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Stress>div {
+  background-color: orangered; /*Changes the progress bar progression color*/
+  width: 69%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+#Progress {
+  background-color: black; /*progressbar background color */
+  border-radius: 13px;
+  padding: 2px;
+}
+
+#Progress>div {
+  background-color: green; /*Changes the progress bar progression color*/
+  width: 100%; /*Changes the progress of the progress bar*/
+  height: 18px;
+  border-radius: 18px;
+}
+
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+#information {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#information .popuptext {
+  visibility: hidden;
+  width: 420px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  top: 250%;
+  left: -150%;
+  overflow-wrap: break-word;
+}
+
+#information .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
