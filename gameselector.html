@@ -13,7 +13,11 @@
   <div class="header" id="header">
     <h2>Select a story to play</h2>
   </div>
-  <input id="json-file" type="file"/><input type="submit" id="upload" value="Upload game" onclick="uploadJSON();"/>
+  <div class="upload-btn-wrapper">
+    <input id="json-file" type="file"/>
+    <label for="json-file"/>choose a file</label>
+    <input type="submit" id="upload" class="button" value="Upload game" onclick="uploadJSON();"/>
+  </div>
   <div id="container">
     <div id="main">
     </div>
