@@ -8,6 +8,7 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/style.js"></script>
   <script src="js/CreateStory.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <title>Motivation game story creator</title>
 </head>
 <body>
@@ -30,7 +31,8 @@
     <div id="textandchoices">
       <h2>Write your story and create your choices.</h2>
       <label>Story text:</label> <textarea id="StoryText" rows="5" cols="43" placeholder="Insert your story here."></textarea> <br><hr>
-      <label>Choice 1: </label> <textarea id="Choice1" rows="2" cols="20" placeholder="Insert your first choice here."></textarea> <textarea id="NextChap1" rows="2" cols="20" placeholder="Next chapter"></textarea> <br>
+      <label>Choice 1: </label> <textarea id="Choice1" rows="2" cols="35" placeholder="Insert your first choice here."></textarea> <textarea id="NextChap1" rows="2" cols="25" placeholder="Next chapter"></textarea>
+      <a href="javascript:checkBoxes(1);" ><i class="fas fa-check-square" style="font-size:36px;color:blue;"></i></a><br>
       <select name="Autonomy change" class="DDown" id="dropdown1"><option selected hidden>Autonomy</option></select>
       <select name="Competence change" class="DDown" id="dropdown2"><option selected hidden>Competence</option></select>
       <select name="Relatedness change" class="DDown" id="dropdown3"><option selected hidden>Relatedness</option></select>
@@ -38,7 +40,8 @@
       <select name="Fatigue change" id="dropdown5" class="DDown"><option selected hidden>Fatigue</option></select>
       <select name="Time change" id="dropdown21" class="DDown"><option selected hidden>Time</option></select>
       <select name="Progress change" id="dropdown25" class="DDown"><option selected hidden>Progress</option></select><br><br>
-      <label>Choice 2: </label> <textarea id="Choice2" rows="2" cols="20" placeholder="Insert your second choice here."></textarea> <textarea id="NextChap2" rows="2" cols="20" placeholder="Next chapter"></textarea><br>
+      <label>Choice 2: </label> <textarea id="Choice2" rows="2" cols="35" placeholder="Insert your second choice here."></textarea> <textarea id="NextChap2" rows="2" cols="25" placeholder="Next chapter"></textarea>
+      <a href="javascript:checkBoxes(2);" ><i class="fas fa-check-square" style="font-size:36px;color:blue;"></i></a><br>
       <select name="Autonomy change" id="dropdown6" class="DDown"><option selected hidden>Autonomy</option></select>
       <select name="Competence change" id="dropdown7" class="DDown"><option selected hidden>Competence</option></select>
       <select name="Relatedness change" id="dropdown8" class="DDown"><option selected hidden>Relatedness</option></select>
@@ -46,7 +49,8 @@
       <select name="Fatigue change" id="dropdown10" class="DDown"><option selected hidden>Fatigue</option></select>
       <select name="Time change" id="dropdown22" class="DDown"><option selected hidden>Time</option></select>
       <select name="Progress change" id="dropdown26" class="DDown"><option selected hidden>Progress</option></select><br><br>
-      <label>Choice 3: </label> <textarea id="Choice3" rows="2" cols="20" placeholder="Insert your third choice here."></textarea> <textarea id="NextChap3" rows="2" cols="20" placeholder="Next chapter"></textarea><br>
+      <label>Choice 3: </label> <textarea id="Choice3" rows="2" cols="35" placeholder="Insert your third choice here."></textarea> <textarea id="NextChap3" rows="2" cols="25" placeholder="Next chapter"></textarea>
+      <a href="javascript:checkBoxes(3);" ><i class="fas fa-check-square" style="font-size:36px;color:blue;"></i></a><br>
       <select name="Autonomy change" id="dropdown11" class="DDown"><option selected hidden>Autonomy</option></select>
       <select name="Competence change" id="dropdown12" class="DDown"><option selected hidden>Competence</option></select>
       <select name="Relatedness change" id="dropdown13" class="DDown"><option selected hidden>Relatedness</option></select>
@@ -54,7 +58,8 @@
       <select name="Fatigue change" id="dropdown15" class="DDown"><option selected hidden>Fatigue</option></select>
       <select name="Time change" id="dropdown23" class="DDown"><option selected hidden>Time</option></select>
       <select name="Progress change" id="dropdown27" class="DDown"><option selected hidden>Progress</option></select><br><br>
-      <label>Choice 4: </label> <textarea id="Choice4" rows="2" cols="20" placeholder="Insert your fourth choice here."></textarea> <textarea id="NextChap4" rows="2" cols="20" placeholder="Next chapter"></textarea><br>
+      <label>Choice 4: </label> <textarea id="Choice4" rows="2" cols="35" placeholder="Insert your fourth choice here."></textarea> <textarea id="NextChap4" rows="2" cols="25" placeholder="Next chapter"></textarea>
+      <a href="javascript:checkBoxes(4);" ><i class="fas fa-check-square" style="font-size:36px;color:blue;"></i></a><br>
       <select name="Autonomy change" id="dropdown16" class="DDown"><option selected hidden>Autonomy</option></select>
       <select name="Competence change" id="dropdown17" class="DDown"><option selected hidden>Competence</option></select>
       <select name="Relatedness change" id="dropdown18" class="DDown"><option selected hidden>Relatedness</option></select>
