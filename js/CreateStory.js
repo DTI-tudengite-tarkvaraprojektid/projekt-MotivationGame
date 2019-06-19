@@ -1,10 +1,9 @@
 /*jshint esversion: 6 */
 class storyGame{
-	constructor(start, end, moti, comp, rela, auto, stress, fati, task){
+	constructor(start, end, comp, rela, auto, stress, fati, task){
 		this.Task = task;
 		this.StartTime = start;
 		this.DeadLine = end;
-		this.Motivation = moti;
 		this.Competence = comp;
 		this.Relatedness = rela;
 		this.Autonomy = auto;
@@ -59,7 +58,7 @@ function getData(){
 	var answers = [];
 	var id;
 	if (localStorage.getItem("Story") === null) {
-		story = new storyGame(startTime, endTime+startTime, 0, parseInt($("#StatCompetence").val()), parseInt($("#StatRelatedness").val()), parseInt($("#StatAutonomy").val()), parseInt($("#StatStress").val()), parseInt($("#StatFatigue").val()), $("#TaskText").val());
+		story = new storyGame(startTime, endTime+startTime, parseInt($("#StatCompetence").val()), parseInt($("#StatRelatedness").val()), parseInt($("#StatAutonomy").val()), parseInt($("#StatStress").val()), parseInt($("#StatFatigue").val()), $("#TaskText").val());
 	} else {
 		story = JSON.parse(localStorage.getItem('Story'));
 		for(var i of story.Chapters){
