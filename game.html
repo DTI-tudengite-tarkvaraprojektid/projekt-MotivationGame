@@ -11,6 +11,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <title>The motivation game</title>
+  <script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        $("#div1").fadeIn(3000);
+        $("#div1").fadeOut(3000);
+      });
+    });
+    </script>
 </head>
 <body>
   <div class="header" id="header">
@@ -46,6 +54,9 @@
   <div id="textarea">
     <p></p>
   </div>
+  <button>Click to fade in boxes</button><br><br>
+
+  <div id="div1"></div><br>
   <div id="txtnbuttons">
 
     <footer>
