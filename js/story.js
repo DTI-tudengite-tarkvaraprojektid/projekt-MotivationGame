@@ -198,13 +198,15 @@ $(document).ready(function() {
 				changeBarColor("Prog", gameStory.progress);
 				document.getElementById("Task").innerHTML = "Task: "+gameStory.task;//parseFloat(this.value).toFixed(2);
 
-				var minutesDead = Math.floor(gameStory.deadLine-gameStory.deadLine%24);
-				if(minutesDead < 10){
-					minutesDead =  Math.floor(gameStory.deadLine-gameStory.deadLine%24) +"0";
-				} else {
-					 Math.floor(gameStory.deadLine-gameStory.deadLine%24);
+
+				var hoursDead = story.StartTime+gameStory.deadLine%24;
+				var daysDead = Math.floor(gameStory.deadLine/24+1);
+				console.log(hoursDead);
+				if(hoursDead >= 24){
+					daysDead ++;
+					hoursDead = hoursDead-24;
 				}
-				var gameEnd = "Day "+ Math.floor(gameStory.deadLine/24+1) + ", "+ Math.floor(gameStory.deadLine%24) +":"+ minutesDead;
+				var gameEnd = "Day "+ daysDead + ", "+ hoursDead +":00";
 
 				document.getElementById("Deadline").innerHTML = "Deadline: "+gameEnd;
 
@@ -253,6 +255,10 @@ $(document).ready(function() {
 			}
 
 			function nextChapter(){
+				document.getElementById("button1").disabled = true;
+				document.getElementById("button2").disabled = true;
+				document.getElementById("button3").disabled = true;
+				document.getElementById("button4").disabled = true;
 				oldGame = Object.assign({}, gameStory);
 				console.log(oldGame);
 				var x = parseInt($(this).val(), 10);
@@ -315,29 +321,33 @@ $(document).ready(function() {
 
 
 				document.getElementById("Today").innerHTML = "Today: "+gameStart;
-				if(answer[(id*4)] == ""){
-					document.getElementById("button1").style.visibility = 'hidden';
-				} else {
-					document.getElementById("button1").innerHTML = answer[(id*4)];
-					document.getElementById("button1").style.visibility = 'visible';
-				}
 				if(answer[(id*4)+1] == ""){
 					document.getElementById("button2").style.visibility = 'hidden';
 				} else {
 					document.getElementById("button2").innerHTML = answer[(id*4)+1];
 					document.getElementById("button2").style.visibility = 'visible';
+					document.getElementById("button2").disabled = false;
+				}
+				if(answer[(id*4)] == ""){
+					document.getElementById("button1").style.visibility = 'hidden';
+				} else {
+					document.getElementById("button1").innerHTML = answer[(id*4)];
+					document.getElementById("button1").style.visibility = 'visible';
+					document.getElementById("button1").disabled = false;
 				}
 				if(answer[(id*4)+2] == ""){
 					document.getElementById("button3").style.visibility = 'hidden';
 				} else {
 					document.getElementById("button3").innerHTML = answer[(id*4)+2];
 					document.getElementById("button3").style.visibility = 'visible';
+					document.getElementById("button3").disabled = false;
 				}
 				if(answer[(id*4)+3] == ""){
 					document.getElementById("button4").style.visibility = 'hidden';
 				} else {
 					document.getElementById("button4").innerHTML = answer[(id*4)+3];
 					document.getElementById("button4").style.visibility = 'visible';
+					document.getElementById("button4").disabled = false;
 				}
 			}
 			function checkStatus(){

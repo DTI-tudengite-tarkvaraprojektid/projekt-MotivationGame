@@ -47,7 +47,13 @@ $(document).ready(function() {
 	//save
 	document.getElementById("savebutton").onclick = showChapters;
 	//next
-	document.getElementById("nextbutton").onclick = showChapters;
+	//document.getElementById("nextbutton").onclick = showChapters;
+	for(i=2; i<5; i++){
+		document.getElementById("checkBox"+i).style.visibility = 'hidden';
+	}
+	for(i = 1; i<5; i++){
+		document.getElementById('checkBox'+i).addEventListener('click', checkBoxes);
+	}
  	interval = setInterval(getSavedData, 100);
 });
 
@@ -211,32 +217,37 @@ function getSavedData(){
 		}
 		document.getElementById("TaskTime").value = time;
 	}
+		checkAll();
 		clearInterval(interval);
 }
 
 function showChapters(){
-	getData();
-	document.getElementById("nextbutton").onclick = showAllChapters;
-	document.getElementById("clearbutton").onclick = showAllChapters;
-	document.getElementById("savebutton").onclick = saveData;
-	story = JSON.parse(localStorage.getItem('Story'));
-	var status = JSON.parse(localStorage.getItem('Status'));
-	var text = "";
-	for(i= 0; i<status.Chapter.length; i++){
-		text += '<div id="chapter">';
-				if(status.Chapter[i] != ""){
-					var name = status.Chapter[i];
-					if(status.Status[i] == 1){
-						text += `<button class="chapterbutton" id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
-					} else {
-						text += `<button class="chapterbutton" id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
+	var currentStatus = checkAll();
+	var currentAtr = checkAtr();
+	if(currentStatus == 1 && currentAtr == 1){
+		getData();
+		document.getElementById("nextbutton").onclick = showAllChapters;
+		document.getElementById("clearbutton").onclick = showAllChapters;
+		document.getElementById("savebutton").onclick = saveData;
+		story = JSON.parse(localStorage.getItem('Story'));
+		var status = JSON.parse(localStorage.getItem('Status'));
+		var text = "";
+		for(i= 0; i<status.Chapter.length; i++){
+			text += '<div id="chapter">';
+					if(status.Chapter[i] != ""){
+						var name = status.Chapter[i];
+						if(status.Status[i] == 1){
+							text += `<button class="chapterbutton" id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
+						} else {
+							text += `<button class="chapterbutton" id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name.replace(/<[^>]*>?/gm, '');+`</button>`;
+						}
 					}
-				}
-		text += '</div>';
-	};
-	document.getElementById("ADTT").innerHTML = text;
-	cleanBoxes();
-	disableBoxes();
+			text += '</div>';
+		};
+		document.getElementById("ADTT").innerHTML = text;
+		cleanBoxes();
+		disableBoxes();
+	}
 }
 
 function disableBoxes(){
@@ -259,30 +270,21 @@ function disableBoxes(){
 	for(i=1; i<5; i++){
 		document.getElementById("dropdown"+(20+i)).disabled = true;
 		document.getElementById("dropdown"+(24+i)).disabled = true;
+		document.getElementById("checkBox"+i).style.visibility = 'hidden';
 	}
 }
 
 function enableBoxes(){
 	document.getElementById("StoryText").disabled = false;
 	document.getElementById("Choice1").disabled = false;
-	document.getElementById("Choice2").disabled = false;
-	document.getElementById("Choice3").disabled = false;
-	document.getElementById("Choice4").disabled = false;
 	document.getElementById("NextChap1").disabled = false;
-	document.getElementById("NextChap2").disabled = false;
-	document.getElementById("NextChap3").disabled = false;
-	document.getElementById("NextChap4").disabled = false;
 	document.getElementById("savebutton").disabled = false;
 	for(i=1; i<6; i++){
 			document.getElementById("dropdown"+i).disabled = false;
-			document.getElementById("dropdown"+(i+5)).disabled = false;
-			document.getElementById("dropdown"+(i+15)).disabled = false;
-			document.getElementById("dropdown1"+i).disabled = false;
 	}
-	for(i=1; i<5; i++){
-		document.getElementById("dropdown"+(20+i)).disabled = false;
-		document.getElementById("dropdown"+(24+i)).disabled = false;
-	}
+		document.getElementById("dropdown21").disabled = false;
+		document.getElementById("dropdown25").disabled = false;
+		document.getElementById("checkBox1").style.visibility = 'visible';
 }
 
 function cleanBoxes(){
@@ -304,6 +306,7 @@ function cleanBoxes(){
 	for(i=1; i<5; i++){
 		document.getElementById("dropdown"+(20+i)).value = placeHolder[5];
 		document.getElementById("dropdown"+(24+i)).value = placeHolder[6];
+		document.getElementById("checkBox"+i).style.visibility = 'hidden';
 	}
 }
 
@@ -315,6 +318,7 @@ function newChapter(name, i){
 		loadData(name, i);
 	} else {
 		cleanBoxes();
+		disableBoxes();
 		enableBoxes();
 	}
 }
@@ -347,6 +351,7 @@ function loadData(name, i){
 		document.getElementById("dropdown"+(i+21)).value = story.Chapters[id].Time[i];
 		document.getElementById("dropdown"+(25+i)).value = story.Chapters[id].Points["Answer"+(i+1)][5];
 	}
+	checkAll();
 }
 
 
@@ -436,6 +441,72 @@ function saveData(){
 	showAllChapters();
 }
 
-function buttonChecks(){
+function checkBoxes(i){
+	if(Number.isInteger(parseInt($(this).attr('value')))){
+		console.log(parseInt($(this).attr('value')));
+		i=parseInt($(this).attr('value'));
+	}
+	var allChecked = 1;
+	var idObj = {};
+	if($("#StoryText").val() == ""){
+		$("#StoryText").css('border', '2px solid red');
+	} else {
+		$("#StoryText").css('border', '2px solid #008CBA');
+	}
+	idObj.idList1 = ["#Choice1", "#NextChap1", "#dropdown1", "#dropdown2", "#dropdown3", "#dropdown4", "#dropdown5", "#dropdown21", "#dropdown25"];
+	idObj.idList2 = ["#Choice2", "#NextChap2", "#dropdown6", "#dropdown7", "#dropdown8", "#dropdown9", "#dropdown10", "#dropdown22", "#dropdown26"];
+	idObj.idList3 = ["#Choice3", "#NextChap3", "#dropdown11", "#dropdown12", "#dropdown13", "#dropdown14", "#dropdown15", "#dropdown23", "#dropdown27"];
+	idObj.idList4 = ["#Choice4", "#NextChap4", "#dropdown16", "#dropdown17", "#dropdown18", "#dropdown19", "#dropdown20", "#dropdown24", "#dropdown28"];
+		for(id = 0; id<$(idObj["idList"+i]).length; id++){
+			if(id <= 1){
+				if($(idObj["idList"+i][id]).val() == ""){
+					$(idObj["idList"+i][id]).css('border', '2px solid red');
+					allChecked = 0;
+				} else {
+					$(idObj["idList"+i][id]).css('border', '2px solid #008CBA');
+				}
+			} else {
+				if(!Number.isInteger(parseInt($(idObj["idList"+i][id]).val()))){
+					$(idObj["idList"+i][id]).css('border', '2px solid red');
+					allChecked = 0;
+				} else {
+					$(idObj["idList"+i][id]).css('border', '2px solid #008CBA');
+				}
+			}
+		}
+	if(allChecked == 1 && i != 4){
+		for(id = 0; id<$(idObj["idList"+i]).length; id++){
+			$(idObj["idList"+(i+1)][id]).prop( "disabled", false )
+		}
+		document.getElementById("checkBox"+(i+1)).style.visibility = 'visible';
+		return 1;
+	} else {
+		return 0;
+	}
+}
 
+function checkAll(){
+	var currentStatus = 1;
+	var idList1 = ["#NextChap1", "#NextChap2", "#NextChap3", "#NextChap4"];
+	for(i = 1; i<5; i++){
+		if($(idList1[i-1]).val() != ""){
+			currentStatus = checkBoxes(i);
+		}
+	}
+	checkAtr();
+	return currentStatus;
+}
+
+function checkAtr(){
+		var statusAtr = 1;
+		var idList = ["#StatAutonomy", "#StatCompetence", "#StatRelatedness", "#StatStress", "#StatFatigue", "#TaskTime", "#DaysToComplete", "#HoursToComplete", "#TaskText"];
+		for(id = 0; id<idList.length; id++){
+			if($(idList[id]).val() == ""){
+				$(idList[id]).css('border', '2px solid red');
+				statusAtr = 0;
+			} else {
+				$(idList[id]).css('border', '2px solid #008CBA');
+			}
+		}
+		return statusAtr;
 }
