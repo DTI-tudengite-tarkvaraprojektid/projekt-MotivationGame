@@ -1,14 +1,14 @@
 div.a{
-    text-align: center;
+	text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 40px;
+	font-size: 40px;
 }
 
 body {
     width: 100wh;
 	height: 90vh;
 	color: #fff;
-	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background: linear-gradient(-45deg, orange, #E73C7E, #78c4dd, #07db00);
 	background-size: 400% 400%;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
@@ -16,8 +16,13 @@ body {
 }
 
 #txtnbuttons{
-    position: absolute;
-    left: 37%;
+	position: absolute;
+	width: 300px;
+	height: 200px;
+	z-index: 15;
+	top: 50%;
+	left: 47%;
+	margin: -100px 0 0 -150px;
 }
 
 .button {
@@ -38,7 +43,7 @@ body {
 }
 
 .button:hover{
-    background-color: rgb(7, 219, 0);
+    background-color: #07db00;
     color: black;
 }
 
