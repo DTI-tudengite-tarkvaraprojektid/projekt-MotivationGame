@@ -326,28 +326,36 @@ $(document).ready(function() {
 				} else {
 					document.getElementById("button2").innerHTML = answer[(id*4)+1];
 					document.getElementById("button2").style.visibility = 'visible';
-					document.getElementById("button2").disabled = false;
+					if(gameStory.progress < 100){
+						document.getElementById("button2").disabled = false;
+					}
 				}
 				if(answer[(id*4)] == ""){
 					document.getElementById("button1").style.visibility = 'hidden';
 				} else {
 					document.getElementById("button1").innerHTML = answer[(id*4)];
 					document.getElementById("button1").style.visibility = 'visible';
-					document.getElementById("button1").disabled = false;
+					if(gameStory.progress < 100){
+						document.getElementById("button1").disabled = false;
+					}
 				}
 				if(answer[(id*4)+2] == ""){
 					document.getElementById("button3").style.visibility = 'hidden';
 				} else {
 					document.getElementById("button3").innerHTML = answer[(id*4)+2];
 					document.getElementById("button3").style.visibility = 'visible';
-					document.getElementById("button3").disabled = false;
+					if(gameStory.progress < 100){
+						document.getElementById("button3").disabled = false;
+					}
 				}
 				if(answer[(id*4)+3] == ""){
 					document.getElementById("button4").style.visibility = 'hidden';
 				} else {
 					document.getElementById("button4").innerHTML = answer[(id*4)+3];
 					document.getElementById("button4").style.visibility = 'visible';
-					document.getElementById("button4").disabled = false;
+					if(gameStory.progress < 100){
+						document.getElementById("button4").disabled = false;
+					}
 				}
 			}
 			function checkStatus(){
