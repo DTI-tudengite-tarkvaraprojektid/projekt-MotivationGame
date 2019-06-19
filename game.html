@@ -7,6 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="js/jquery.min.js"></script>
   <script src="js/story.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
   <title>The motivation game</title>
 </head>
 <body>
@@ -32,6 +35,14 @@
         <label>Progress<div id="Progress"><div id="Prog">100%</div></div></label>
     </div>
   </div>
+  <div id="ex1" class="modal">
+    <p>Thanks for clicking. That felt good.</p>
+    <a href="index.html" class='button' target="_self" rel="modal:close">Avalehele!</a>
+    <div id="restart">
+      <button id="restart2" class='restart3'> Restart </button>
+    </div>
+  </div>
+  <p><a href="#ex1" rel="modal:open">Open Modal</a></p>
   <div id="textarea">
     <p></p>
   </div>
