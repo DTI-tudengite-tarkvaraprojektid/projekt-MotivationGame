@@ -176,3 +176,96 @@ html, body{
     border-radius: 18px;
   }
   
+
+  #information {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #888;
+    margin: 5px;
+    padding: 5px 5px;
+    color: black;
+    border-radius: 5px;
+    border-color: black;
+    border: solid 2px;
+    transition-duration: 0.4s;
+  }
+  
+  #information:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+  }
+  
+  #information .popuptext {
+    visibility: hidden;
+    width: 300px;
+    padding: 15px 15px;
+    margin: 10px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    z-index: 1;
+    top: 550%;
+    left: 20%;
+    position: absolute;
+    overflow-wrap: break-word;
+    border-color: black;
+    border: solid 2px;
+    border-radius: 5px;
+  }
+  
+  #information .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    border-color: black;
+  }
+  
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  
+  .modal{
+    background-color: rgb(120, 196, 221);
+    font-family: Georgia, serif;
+    margin: 30px;
+    font-size: 26px;
+    text-align: center;
+    align-content: center;
+    padding: 20px;
+    max-height: 300px;
+    border-color: #008CBA;
+  }
+  
+  .restart3 {
+    background-color: white;
+    color: black;
+    border: 2px solid orange;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    right: 5%;
+    position: absolute;
+    bottom: 9%;
+  }
+  
+  .restart3:hover {
+    background-color: orange;
+    color: white;
+  }
