@@ -12,6 +12,7 @@ class storyGame{
 		this.Fatigue = fati;
 		this.Progress = 0;
     this.Chapters = [];
+		this.Motivation = "(gameStory.autonomy + gameStory.competence + gameStory.relatedness) / 3";
 	}
 }
 
@@ -434,4 +435,8 @@ function saveData(){
 	index = 100;
 	saveStoryLocal(status);
 	showAllChapters();
+}
+
+function buttonChecks(){
+
 }

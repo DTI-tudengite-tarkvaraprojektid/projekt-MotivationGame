@@ -59,7 +59,7 @@ $(document).ready(function() {
 		setTimeout(function test(){
 			document.getElementById("restart2").onclick = startGame;
 			function setStory(){
-				gameStory = new storyGame(parseInt(story.StartTime), parseInt(story.DeadLine), story.Motivation, story.Competence, story.Relatedness, story.Autonomy, story.Stress, story.Fatigue, story.Task);
+				gameStory = new storyGame(parseInt(story.StartTime), parseInt(story.DeadLine), story.Motivation, parseInt(story.Competence), parseInt(story.Relatedness), parseInt(story.Autonomy), parseInt(story.Stress), parseInt(story.Fatigue), story.Task);
 				oldGame = Object.assign({}, gameStory);
 				motivEval = story.Motivation;
 				gameStory.rmotivation =  eval(motivEval);
@@ -99,7 +99,7 @@ $(document).ready(function() {
 				gameStory.progress += progresses[answer];
 				changes(progresses[answer], "progress");
 				gameStory.startTime += time[answer]/60;
-				gameStory.rmotivation = eval(motivEval);
+				gameStory.rmotivation = Math.round(eval(motivEval));
 			}
 
 			function changes(stats, atr){
@@ -147,10 +147,10 @@ $(document).ready(function() {
 					progressStatus = "Almost there";
 				} else if (gameStory.progress > 90 && gameStory.progress < 100){
 				 	progressStatus = "Virtually ready";
-				} else if (gameStory.progress == 100){
+				} else if (gameStory.progress >= 100){
 				 	progressStatus = "Done";
 				} else {
-					progressStatus = "progressi error";
+					progressStatus = "progress  error";
 				}
 				document.getElementById("Progress").innerHTML = "Progress: "+progressStatus;
 			}
@@ -174,7 +174,6 @@ $(document).ready(function() {
 						id = chapter.indexOf(i);
 					}
 				}
-				console.log(id);
 				var i = 0;
 				document.getElementById("textarea").innerHTML = game[id];
 				document.getElementById("header").style.visibility = 'visible';
@@ -286,7 +285,11 @@ $(document).ready(function() {
 				  var width = oldGame[stat];
 				  var i = setInterval(frame, 10);
 				  function frame() {
-				    if (width == gameStory[stat]) {
+				    if (width == gameStory[stat] || width >= 100 || width <=0) {
+							if(width>100){
+								elem.style.width = '100%';
+								elem.innerHTML = "100%";
+							}
 				      clearInterval(i);
 				    } else if(gameStory[stat]-width>0) {
 				      width++;
