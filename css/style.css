@@ -55,7 +55,7 @@ body{
   width: 98%; /*Optional*/
   table-layout: fixed; /*Optional*/
   border-spacing: 10px; /*Optional*/
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
 
 .footer{
@@ -345,4 +345,45 @@ body{
 .restart3:hover {
   background-color: orange;
   color: white;
+}
+
+
+
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px; 
+}
+
+[type="file"] + label {
+  background-color: white;
+  color: black;
+  border: 2px solid orange;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+ 
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+    background-color: orange;
+    color: white;
+}
+ 
+[type="file"]:focus + label {
+  outline: 1px dotted black;
+  outline: -webkit-focus-ring-color auto 5px;
 }
