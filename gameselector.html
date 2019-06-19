@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/style.js"></script>
+  <script src="js/gameselector.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,6 +12,11 @@
 <body>
   <div class="header" id="header">
     <h2>Select a story to play</h2>
+  </div>
+  <input id="json-file" type="file"/><input type="submit" id="upload" value="Upload game" onclick="uploadJSON();"/>
+  <div id="container">
+    <div id="main">
+    </div>
   </div>
 </body>
 </html>
