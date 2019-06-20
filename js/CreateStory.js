@@ -44,10 +44,17 @@ var uniqueFilename;
 $(document).ready(function() {
 	uniqueFilename = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + ".json";
 	document.getElementById("loadbutton").href = "tmp/"+uniqueFilename;
-	//save
 	document.getElementById("savebutton").onclick = showChapters;
-	//next
-	//document.getElementById("nextbutton").onclick = showChapters;
+	document.getElementById("deletebutton").onclick = deleteEverything;
+	/*$("deletebutton").hover(function(){
+  	$("#deletebutton").css("background-color", "white");
+  }, function(){
+  	$("#deletebutton").css("background-color", "red");
+	});*/
+	$("#deletebutton").hover(function(e) {
+    $(this).css("background-color",e.type === "mouseenter"?"red":"white");
+	});
+	$("#deletebutton").css('border', '2px solid red');
 	for(i=2; i<5; i++){
 		document.getElementById("checkBox"+i).style.visibility = 'hidden';
 	}
@@ -56,6 +63,12 @@ $(document).ready(function() {
 	}
  	interval = setInterval(getSavedData, 100);
 });
+
+function deleteEverything(){
+	confirm("Are you sure you want to delete everything ?");
+	localStorage.clear();
+	location.href = 'gamecreator.html';
+}
 
 function getData(){
 	var endTime = getEndTime();
@@ -76,7 +89,7 @@ function getData(){
 	}
 	chapt = new game($("#StoryText").val(), "", "default");
 	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val())
-	chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
+	chapt["Next chapter"].push($("#NextChap1").val().replace(/<[^>]*>?/gm, ''), $("#NextChap2").val().replace(/<[^>]*>?/gm, ''), $("#NextChap3").val().replace(/<[^>]*>?/gm, ''), $("#NextChap4").val().replace(/<[^>]*>?/gm, ''));
 	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
@@ -153,10 +166,9 @@ function saveStoryLocal(c){
 }
 
 function saveStory(){
-	console.log(story);
 	$.ajax
 		({
-				type: "GET",
+				type: "POST",
 				dataType : 'json',
 				async: false,
 				url: 'tmp/save_json.php',
@@ -164,7 +176,6 @@ function saveStory(){
 				success: function () {alert("Thanks!"); },
 				failure: function() {alert("Error!");}
 		});
-		console.log(story);
 }
 
 function getSavedData(){
@@ -391,8 +402,7 @@ function saveData(){
 	var id = -1;
 	chapt = new game($("#StoryText").val(), "", name);
 	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val());
-	chapt["Next chapter"].push($("#NextChap1").val(), $("#NextChap2").val(), $("#NextChap3").val(), $("#NextChap4").val());
-	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
+	chapt["Next chapter"].push($("#NextChap1").val().replace(/<[^>]*>?/gm, ''), $("#NextChap2").val().replace(/<[^>]*>?/gm, ''), $("#NextChap3").val().replace(/<[^>]*>?/gm, ''), $("#NextChap4").val().replace(/<[^>]*>?/gm, ''));chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Points["Answer4"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
@@ -449,7 +459,6 @@ function saveData(){
 
 function checkBoxes(i){
 	if(Number.isInteger(parseInt($(this).attr('value')))){
-		console.log(parseInt($(this).attr('value')));
 		i=parseInt($(this).attr('value'));
 	}
 	var allChecked = 1;
@@ -464,13 +473,20 @@ function checkBoxes(i){
 	idObj.idList3 = ["#Choice3", "#NextChap3", "#dropdown11", "#dropdown12", "#dropdown13", "#dropdown14", "#dropdown15", "#dropdown23", "#dropdown27"];
 	idObj.idList4 = ["#Choice4", "#NextChap4", "#dropdown16", "#dropdown17", "#dropdown18", "#dropdown19", "#dropdown20", "#dropdown24", "#dropdown28"];
 		for(id = 0; id<$(idObj["idList"+i]).length; id++){
-			if(id <= 1){
+			if(id < 1){
 				if($(idObj["idList"+i][id]).val() == ""){
 					$(idObj["idList"+i][id]).css('border', '2px solid red');
 					allChecked = 0;
 				} else {
 					$(idObj["idList"+i][id]).css('border', '2px solid #008CBA');
 				}
+			} else if(id == 1) {
+					if($(idObj["idList"+i][id]).val() == "" ||  $(idObj["idList"+i][id]).val().length > 30){
+						$(idObj["idList"+i][id]).css('border', '2px solid red');
+						allChecked = 0;
+					} else {
+						$(idObj["idList"+i][id]).css('border', '2px solid #008CBA');
+					}
 			} else {
 				if(!Number.isInteger(parseInt($(idObj["idList"+i][id]).val()))){
 					$(idObj["idList"+i][id]).css('border', '2px solid red');
@@ -480,11 +496,13 @@ function checkBoxes(i){
 				}
 			}
 		}
-	if(allChecked == 1 && i != 4){
-		for(id = 0; id<$(idObj["idList"+i]).length; id++){
-			$(idObj["idList"+(i+1)][id]).prop( "disabled", false )
+	if(allChecked == 1){
+		if(i != 4){
+			for(id = 0; id<$(idObj["idList"+i]).length; id++){
+				$(idObj["idList"+(i+1)][id]).prop( "disabled", false )
+			}
+			document.getElementById("checkBox"+(i+1)).style.visibility = 'visible';
 		}
-		document.getElementById("checkBox"+(i+1)).style.visibility = 'visible';
 		return 1;
 	} else {
 		return 0;
@@ -506,7 +524,15 @@ function checkAll(){
 function checkAtr(){
 		var statusAtr = 1;
 		var idList = ["#StatAutonomy", "#StatCompetence", "#StatRelatedness", "#StatStress", "#StatFatigue", "#TaskTime", "#DaysToComplete", "#HoursToComplete", "#TaskText"];
-		for(id = 0; id<idList.length; id++){
+		for(id = 0; id<5; id++){
+			if($(idList[id]).val() == "-100 to 100"){
+				$(idList[id]).css('border', '2px solid red');
+				statusAtr = 0;
+			} else {
+				$(idList[id]).css('border', '2px solid #008CBA');
+			}
+		}
+		for(id = 5; id<idList.length; id++){
 			if($(idList[id]).val() == ""){
 				$(idList[id]).css('border', '2px solid red');
 				statusAtr = 0;
@@ -515,9 +541,4 @@ function checkAtr(){
 			}
 		}
 		return statusAtr;
-}
-
-function infoPop(){
-	var popup = document.getElementById("popup");
-	popup.classList.toggle("show");
 }

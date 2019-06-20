@@ -41,7 +41,13 @@ $(document).ready(function() {
 
 		getData();
 		function getData(){
-			var url = "http://greeny.cs.tlu.ee/~urmoros/projekt/test.json";
+			var url;
+			if (localStorage.getItem("StoryName") !== null) {
+				 url = "uploads/"+localStorage.getItem('StoryName');
+			} else {
+				 url = "http://greeny.cs.tlu.ee/~urmoros/projekt/test.json";
+			}
+			console.log(url);
 			$.getJSON( url, function(data){
 				story = data;
 			});
@@ -64,9 +70,9 @@ $(document).ready(function() {
 				motivEval = story.Motivation;
 				gameStory.rmotivation =  eval(motivEval);
 				story.Chapters.forEach(function (chapt, index){
-				question.push(chapt.Question);
-				game.push(chapt.Story);
-				chapter.push(chapt.Chapter);
+				question.push(chapt.Question.replace(/<[^>]*>?/gm, ''));
+				game.push(chapt.Story.replace(/<[^>]*>?/gm, ''));
+				chapter.push(chapt.Chapter.replace(/<[^>]*>?/gm, ''));
 				var i;
 				for (i = 1; i<5; i++){
 					var temp = chapt.Points["Answer"+i];
@@ -82,9 +88,7 @@ $(document).ready(function() {
 					next.push(nextChapt);
 					}
 				});
-					console.log(story);
 			}
-			//console.log(stress);
 			function changeData(answer){
 				gameStory.autonomy += autonomys[answer];
 				changes(autonomys[answer], "autonomy");
@@ -152,7 +156,7 @@ $(document).ready(function() {
 				} else {
 					progressStatus = "progress  error";
 				}
-				document.getElementById("Progress").innerHTML = "Progress: "+progressStatus;
+				document.getElementById("Progress1").innerHTML = "Progress: "+progressStatus;
 			}
 			function changeBarColor(barId, percentage){
 				if(percentage <= 25){
@@ -201,7 +205,6 @@ $(document).ready(function() {
 
 				var hoursDead = story.StartTime+gameStory.deadLine%24;
 				var daysDead = Math.floor(gameStory.deadLine/24+1);
-				console.log(hoursDead);
 				if(hoursDead >= 24){
 					daysDead ++;
 					hoursDead = hoursDead-24;
@@ -219,13 +222,13 @@ $(document).ready(function() {
 				var gameStart = "Day "+ Math.floor(gameStory.startTime/24+1) + ", "+ Math.floor(gameStory.startTime%24) +":"+ minutes;
 
 				document.getElementById("Today").innerHTML = "Today: "+gameStart;
-				console.log(answer);
 				if(answer[(id*4)] == ""){
 					document.getElementById("button1").style.visibility = 'hidden';
 				} else {
 					buttons++;
 					document.getElementById("button1").innerHTML = answer[(id*4)];
 					document.getElementById("button1").style.visibility = 'visible';
+					document.getElementById("button1").disabled = false;
 				}
 				if(answer[(id*4)+1] == ""){
 					document.getElementById("button2").style.visibility = 'hidden';
@@ -233,6 +236,7 @@ $(document).ready(function() {
 					buttons++;
 					document.getElementById("button2").innerHTML = answer[(id*4)+1];
 					document.getElementById("button2").style.visibility = 'visible';
+					document.getElementById("button2").disabled = false;
 				}
 				if(answer[(id*4)+2] == ""){
 					document.getElementById("button3").style.visibility = 'hidden';
@@ -240,6 +244,7 @@ $(document).ready(function() {
 					buttons++;
 					document.getElementById("button3").innerHTML = answer[(id*4)+2];
 					document.getElementById("button3").style.visibility = 'visible';
+					document.getElementById("button3").disabled = false;
 				}
 				if(answer[(id*4)+3] == ""){
 					document.getElementById("button4").style.visibility = 'hidden';
@@ -247,6 +252,7 @@ $(document).ready(function() {
 					buttons++;
 					document.getElementById("button4").innerHTML = answer[(id*4)+3];
 					document.getElementById("button4").style.visibility = 'visible';
+					document.getElementById("button4").disabled = false;
 				}
 				changeButtonsLocation(buttons);
 				document.getElementById("button1").onclick = nextChapter;
@@ -260,7 +266,6 @@ $(document).ready(function() {
 				document.getElementById("button3").disabled = true;
 				document.getElementById("button4").disabled = true;
 				oldGame = Object.assign({}, gameStory);
-				console.log(oldGame);
 				var x = parseInt($(this).val(), 10);
 				changeData(x+(id*4));
 				var nextChapt = next[x+(id*4)];
@@ -305,7 +310,6 @@ $(document).ready(function() {
 							width--;
 				      elem.style.width = width + '%';
 							elem.innerHTML = width+"%";
-							console.log("Negavtiivne");
 						}
 				  }
 				}
