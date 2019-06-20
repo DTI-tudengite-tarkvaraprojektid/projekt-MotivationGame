@@ -28,7 +28,7 @@
          localStorage.setItem("Story", data);
        });
     }
-    location.href = 'gameselector.html';
+    location.href = 'index.html';
     </script>
   <head>
     <meta charset="utf-8">
