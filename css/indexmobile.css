@@ -16,6 +16,9 @@ div.a{
     font-size: 20px;
     margin-bottom: 20%;
 }
+#gameName{
+	font-size: 17px;
+}
 
 #txtnbuttons{
     text-align: center;
