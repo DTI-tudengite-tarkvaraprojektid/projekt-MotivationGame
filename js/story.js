@@ -45,7 +45,7 @@ $(document).ready(function() {
 			if (localStorage.getItem("StoryName") !== null) {
 				 url = "uploads/"+localStorage.getItem('StoryName');
 			} else {
-				 url = "http://greeny.cs.tlu.ee/~urmoros/projekt/test.json";
+				 url = "story.json";
 			}
 			console.log(url);
 			$.getJSON( url, function(data){
@@ -72,7 +72,7 @@ $(document).ready(function() {
 				story.Chapters.forEach(function (chapt, index){
 				question.push(chapt.Question.replace(/<[^>]*>?/gm, ''));
 				game.push(chapt.Story.replace(/<[^>]*>?/gm, ''));
-				chapter.push(chapt.Chapter.replace(/<[^>]*>?/gm, ''));
+				chapter.push(chapt.Chapter);
 				var i;
 				for (i = 1; i<5; i++){
 					var temp = chapt.Points["Answer"+i];
@@ -257,6 +257,8 @@ $(document).ready(function() {
 				changeButtonsLocation(buttons);
 				document.getElementById("button1").onclick = nextChapter;
 				document.getElementById("button2").onclick = nextChapter;
+				document.getElementById("button3").onclick = nextChapter;
+				document.getElementById("button4").onclick = nextChapter;
 
 			}
 
@@ -265,6 +267,11 @@ $(document).ready(function() {
 				document.getElementById("button2").disabled = true;
 				document.getElementById("button3").disabled = true;
 				document.getElementById("button4").disabled = true;
+				if(gameStory.stress >= 100){
+					document.getElementById("Progress1").innerHTML = "You are too stressed to continue";
+				} else if(gameStory.motivation <=0){
+					document.getElementById("Progress1").innerHTML = "You are not motivated to continue";
+				}
 				oldGame = Object.assign({}, gameStory);
 				var x = parseInt($(this).val(), 10);
 				changeData(x+(id*4));
@@ -330,7 +337,7 @@ $(document).ready(function() {
 				} else {
 					document.getElementById("button2").innerHTML = answer[(id*4)+1];
 					document.getElementById("button2").style.visibility = 'visible';
-					if(gameStory.progress < 100){
+					if(gameStory.progress < 100 && gameStory.rmotivation > 0 && gameStory.stress < 100){
 						document.getElementById("button2").disabled = false;
 					}
 				}
@@ -339,7 +346,7 @@ $(document).ready(function() {
 				} else {
 					document.getElementById("button1").innerHTML = answer[(id*4)];
 					document.getElementById("button1").style.visibility = 'visible';
-					if(gameStory.progress < 100){
+					if(gameStory.progress < 100 && gameStory.rmotivation > 0 && gameStory.stress < 100){
 						document.getElementById("button1").disabled = false;
 					}
 				}
@@ -348,7 +355,7 @@ $(document).ready(function() {
 				} else {
 					document.getElementById("button3").innerHTML = answer[(id*4)+2];
 					document.getElementById("button3").style.visibility = 'visible';
-					if(gameStory.progress < 100){
+					if(gameStory.progress < 100 && gameStory.rmotivation > 0 && gameStory.stress < 100){
 						document.getElementById("button3").disabled = false;
 					}
 				}
@@ -357,7 +364,7 @@ $(document).ready(function() {
 				} else {
 					document.getElementById("button4").innerHTML = answer[(id*4)+3];
 					document.getElementById("button4").style.visibility = 'visible';
-					if(gameStory.progress < 100){
+					if(gameStory.progress < 100 && gameStory.rmotivation > 0 && gameStory.stress < 100){
 						document.getElementById("button4").disabled = false;
 					}
 				}
