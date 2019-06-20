@@ -1,0 +1,451 @@
+[[Beguinning]]:
+You have a very important homework assignment, that needs to be ready by tomorrow. Luckily, you have lots of available time right now. 
+Also, there's this youtube video that has been in your thoughts recently. It wouldn't hurt to check it out; it would put you in a good mood for studying. 
+[[I should at least check out what i need to do first]](study)<br>
+[[check video]](video)<br>
+
+[[study]]:
+You open the necessary file; the first assignment is a little bit hard, as it would require you to check an internet textbook that has never made sense to you. Not to mention, the format is so crazy that this almost seems purposeful. You imagine the effort it would take to do this and feel tired and frustrated in advance, despite not having done anything yet. This feeling is just terrible!
+Perhaps it will decrease, if you just take a look at what you need to do and summarise it in your mind; even if you don't continue right away, at least you would know, what to do later. 
+Then again, you just don't feel like studying right now. Maybe the right feeling will come later, after a short break? 
+[[Perhaps a closer look of the assignment will help]](nextStep)<br>
+[[The right feeling will probably come later]](shortBreak)<br>
+
+[[video]]:
+You finish watching the video and then notice another video in the "recommended" menu, that seems absolutely hilarious. Why not take a look, you have some time to spare. 
+On the other hand, if you make a slow and modest beginning with your assignment, you could simply remember to watch the video later. 
+
+[[Just five more minutes]](nextVideo)<br>
+[[At least check what i need to do]](studyStart)<br>
+
+
+[[nextStep]]:
+You look at the assignment, trying to understand all the different parts of it and decide to try if you can do it. 
+
+[[Let's dive into this right now]](goodStudy)<br>
+[[The right feeling will probably come later]](shortBreak)<br>
+
+[[shortBreak]]:
+You decide to take a break from "studying", get some coffee and snacks, sit on the couch and watch some tv. After some time you get mad at yourself; you have less and less time to finish your assignment. "What's wrong with me?! Why can't I even start?!" 
+[[Time to save what is possible to save]](doSomething)<br>
+[[Better not to think about it, it's making you angry]](continueDoingNothing)<br>
+
+[[studyStart]]:
+You open the necessary file; the first assignment is a little bit hard, as it would require you to check an internet textbook that has never made sense to you. Not to mention, the format is so crazy that this almost seems purposeful. You imagine the effort it would take to do this and feel tired and frustrated in advance, despite not having done anything yet. This feeling is just terrible!
+[[You cant do it anyway]](nextVideo)<br>
+[[Time to save what is possible to save]](studyMore)<br>
+
+[[nextVideo]]:
+In between enjoying yourself with amusing videos, you look at the clock on the bottom right corner of your computer and discover frighteningly, that it has been 4.5 hours since you sat down in front of the computer. You are very angry at yourself, and wonder if it would have been better, if you had just started studying in the beginning. This "what if" scenario makes you even angrier. 
+Obviously, you have wasted a lot of time on nothing. You could still salvage the situation if you started studying right now and keep doing so continuously until bedtime. 
+On the other hand, you feel so frustrated that you just cant bring yourself to study. 
+[[You cant do it anyway, get some snacks]](continueDoingNothing)<br>
+[[Time to save what is possible to save]](doSomething)<br>
+
+
+[[goodStudy]]:
+You wasted no time starting this, so you have some time to carefully and patiently look trough all the different details. It's not easy, but you finish the assignment after some hours and check all the solutions again, just to be sure. Before bedtime you have time for a nice dinner, which you eat watching your favorite show. 
+Tomorrow at school your presented answers are complimented for being some of the best in your class.
+[[Time to end the schoolday]](goHome)<br>
+
+[[studyMore]]:
+You feel very bored and frustrated, but nevertheless observe the material long enough that some of it event sort of starts to make sence. You feel better and continue more enthusiastically. Eventually more of it makes sence. It's not easy, but after three exhausting hours you get it done. It's way past your bedtime, so you go to sleep. 
+
+The next day you are complimented about how good your answers are. 
+[[Time to end the schoolday]](goHome)<br>
+
+[[doSomething]]:
+You stay up half the night finishing your homework assignment. By the time it's finished, your eyes and head hurt. The next day at school you get a C, but later in class you are able to answer a lot of questions the teacher asks the class. You feel proud of your effort. 
+[[Time to end the schoolday]](goHome)<br>
+
+[[continueDoingNothing]]:
+You peacefully, without caring what happens, finish your snacks and stay up late, watching reruns of tv shows. The next day at school you get an F. You don't really care about anything. 
+[[Time to end the schoolday]](goHome)<br>
+
+
+[[goHome]]:
+You get to your home and feel quite tired, so you rest for 30 minutes. 
+Your next homework assignment is due the day after tomorrow, so there is no need to panic. On the other hand, you have wanted to clean your home in over a month, so perhaps you could at least start with that today? You really don't feel like doing anything today. Maybe if you would play on the computer for a bit, it would rest your mind and put you in a good mood for studying. You look outside and see the sun come out; the radiant glow of the world outside completely owerwhelms you. This would be the best time to take a walk in the park. 
+[[Go to the park and take a walk]](walkInThePark)<br>
+[[Play something on the computer]](playComputer)<br>
+[[Clean your home; if you get too tired, you can always stop]](cleanHome)<br>
+[[Take a look at the homework]](homework)<br>
+
+
+[[walkInThePark]]:
+The combined beauty an asthetic of the nature along with the sun and a light breeze leave you feeling fantastic; you thank god you didn't stay in the house playing with the computer. Coming home, you feel very energized. 
+[[Clean your home; if you get too tired, you can always stop]](cleanHomeTimeA)<br>
+[[Take a look at the homework]](homeworkTimeA)<br>
+
+[[playComputer]]:
+You boot up the computer and play a game for 1.5 hours. You feel pretty good. Now you're thinking that if you started doing things now, you would have enough time to easily finish them. 
+Then again, you would get them done with enough time even if you would just play a little more.
+[[Clean your home; if you get too tired, you can always stop]](cleanHomeTimeB)<br>
+[[Take a look at the homework]](homeworkTimeB)<br>
+[[Just one more game]](oneMoreGameA)<br>
+
+[[cleanHome]]:
+You get the vacum cleaner and vacum most of your home's corners and floor-space. Then you take your carpets outside and beat them with a carpet beater until they are clean enough. It was pretty fun, actually.
+[[Take a look at the homework]](homeworkTimeC)<br>
+[[Play something on the computer]](playGameTimeA)<br>
+
+[[homework]]:
+You go to your desk, open up the textbooks and notebooks on this subject and try to assess your assignments. There are quite a lot of them here and they seem to be quite hard. 
+[[Clean your home; if you get too tired, you can always stop]](cleanHomeTimeC)<br>
+[[Play something on the computer]](playGameTimeB)<br>
+[[Let's make a slow start then]](continueHomework)<br>
+
+
+[[cleanHomeTimeA]]:
+You get the vacum cleaner and vacum most of your home's corners and floor-space. Then you take your carpets outside and beat them with a carpet beater until they are clean enough. It was pretty fun, actually. 
+[[Time to go to sleep]](sleep1)<br>
+
+[[homeworkTimeA]]:
+You go to your desk, open up the textbooks and notebooks on this subject and try to assess your assignments. There are quite a lot of them here and they seem to be quite hard. You are not able to do much, because it's bedtime and you have school in the morning. 
+[[Time to go to sleep]](sleep2)<br>
+
+
+[[cleanHomeTimeB]]:
+You get the vacum cleaner and vacum most of your home's corners and floor-space. Then you take your carpets outside and beat them with a carpet beater until they are clean enough. It was pretty fun, actually. 
+[[Time to go to sleep]](sleep3)<br>
+
+[[homeworkTimeB]]:
+You go to your desk, open up the textbooks and notebooks on this subject and try to assess your assignments. There are quite a lot of them here and they seem to be quite hard. You are not able to do much, because it's bedtime and you have school in the morning. 
+[[Time to go to sleep]](sleep4)<br>
+
+[[oneMoreGameA]]:
+You play for 5 more hours. After all, tomorrow is a schoolday but there is no homework; you have earned some rest. After the fifth hour of playing you slowly get angry with yourself; you have meen waiting for over a month to clean your home.   
+[[Time to go to sleep]](sleep5)<br>
+
+
+[[homeworkTimeC]]:
+You go to your desk, open up the textbooks and notebooks on this subject and try to assess your assignments. There are quite a lot of them here and they seem to be quite hard. You are not able to do much, because it's bedtime and you have school in the morning. 
+[[Time to go to sleep]](sleep6)<br>
+
+[[playGameTimeA]]:
+The house is now clean; something that has been bothering you for a month now, has finally been done. Now maybe you can play some computer games? You have done something important today and some relaxing would be good. 
+You play games for 5 hours. 
+[[Time to go to sleep]](sleep7)<br>
+
+
+[[cleanHomeTimeC]]:
+You get the vacum cleaner and vacum most of your home's corners and floor-space. Then you take your carpets outside and beat them with a carpet beater until they are clean enough. It was pretty fun, actually. 
+[[Time to go to sleep]](sleep8)<br>
+
+[[playGameTimeB]]:
+The house is now clean; something that has been bothering you for a month now, has finally been done. Now maybe you can play some computer games? You have done something important today and some relaxing would be good. 
+You play games for 5 hours. 
+[[Time to go to sleep]](sleep9)<br>
+
+[[continueHomework]]:
+You look at the first assignment and struggle with it for 2 very boring hours, progress is very slow, but it builds up. It eventually gets easier and starts making sense. the next 2-3 hours aren't that difficult. Although, when bedtime comes, it is still not finished. 
+[[Time to go to sleep]](sleep10)<br>
+
+
+[[sleep1]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and it looks like almost everyone knows more about it than you. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Finally get some homework done]](homework_1.1)<br>
+[[You still feel kind of tired, why not play something on the computer]](computer_1.1)<br>
+
+[[sleep2]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and it looks like almost everyone knows more about it than you. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Finally get some homework done]](homework_1.1)<br>
+[[You still feel kind of tired, why not play something on the computer]](computer_1.1)<br>
+
+[[sleep3]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and because you have studied them yesterday, you understand things quite well and are complimented. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Continue homework]](homework_3.1)<br>
+[[You still feel kind of tired, why not play something on the computer]](computer_3.1)<br>
+
+[[sleep4]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and because you have studied them yesterday, you understand things quite well and are complimented. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Continue homework]](homework_4.1)<br>
+
+[[sleep5]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and because you have studied them yesterday, you understand things quite well and are complimented. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Continue homework]](homework_5.1)<br>
+[[You still feel kind of tired, why not play something on the computer]](computer_5.1)<br>
+[[You don't quite feel like studying, maybe if you clean a little...]](clean_5)<br>
+
+[[sleep6]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and because you have studied them yesterday, you understand things quite well and are complimented. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Continue homework]](homework_6.1)<br>
+[[You still feel kind of tired, why not play something on the computer]](computer_6.1)<br>
+
+[[sleep7]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and it looks like almost everyone knows more about it than you. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Try to finally get some homework done]](homework_7.1)<br>
+[[This is just too hard, maybe if you take just 5 minutes to play computer games, you would be in a better mood]](computer_7.1)<br>
+[[You don't quite feel like studying, maybe if you clean a little...]](clean_7)<br>
+
+[[sleep8]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and it looks like almost everyone knows more about it than you. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Finally get some homework done]](homework_8.1)<br>
+[[You still feel kind of tired, why not play something on the computer]](computer_8.1)<br>
+
+[[sleep9]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and because you have studied them yesterday, you understand things quite well and are complimented. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[Continue homework]](homework_9.1)<br>
+[[You still feel kind of tired, why not play something on the computer]](computer_9.1)<br>
+[[You don't quite feel like studying, maybe if you clean a little...]](clean_9)<br>
+
+
+[[sleep10]]:
+You sleep 7-8 hours and go to school in the morning. The class and teachers are discussing some relevant subject and because you have studied them yesterday, you understand things quite well and are complimented. 
+When you get home, you rest and eat for an hour, then think to yourself, what you should do. 
+[[The homework is pretty interesting this time, let's see it through first]](homework_10.1)<br>
+
+[[homework_1.1]]:
+You realize that you have a very important homework to do and, if there is any hope of getting it done, you have to spend all of your remaining time on this. you triple check all your assignments and see that they are not easy. Still, you slowly begin and slow progress ensues. Some time goes by and you start understanding that you will probably not finish everything on time. 
+Now you're tired. The fact must be accepted that this cannot be completed, but what will others think of you if you don't even show enough effort to finish the first ones. 
+[[Just do what you can right now, at least you have done something then]](homework_1.2)<br>
+
+[[homework_1.2]]:
+After the first unsuccesses you start getting some right. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. 
+You stay up half the night and finish your homework; or rather, the absolute minimal amount of it, so that the school would classify it as finished. 
+[[It's seriously late, go to sleep]](finish_1.1)<br>
+
+[[computer_1.1]]:
+You play on the computer, each passing minute you promise to yourself that you will stop playing and start studying...right after the next game. This does not happen. 4 hours later you realise that nothing will become of your homework assignment. 
+[[Just enjoy this moment, don't think about anything]](computer_1.2)<br>
+
+[[computer_1.2]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_1.2)<br>
+
+[[finish_1.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. This is reason to feel proud, while still tired from not having enough sleep. Also, you finally got your home clean. :)
+
+
+[[finish_1.2]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. Also, you did finally clean your home. :)
+
+
+[[homework_3.1]]:
+You remember some details from studying yesterday, so it is not that hard. After the first unsuccesses you start getting some right. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. 
+[[Good, let's not let this feeling go]](homework_3.2)<br>
+
+[[homework_3.2]]:
+It is finished by bedtime. You feel tired and awesome at the same time. Too tired to think about anything. 
+[[Time to sleep]](finish_3.1)<br>
+
+[[computer_3.1]]:
+You play on the computer, each passing minute you promise to yourself that you will stop playing and start studying...right after the next game. This does not happen. 4 hours later you realise that nothing will become of your homework assignment. 
+[[Just enjoy this moment, don't think about anything]](computer_3.2)<br>
+
+[[computer_3.2]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_3.2)<br>
+
+[[finish_3.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. About half of your class looks sleep deprived. This is reason to feel proud. Also, you finally got your home clean. :)
+
+[[finish_3.2]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. Also, you did finally clean your home. :)
+
+[[homework_4.1]]:
+You remember some details from studying yesterday, so it is not that hard. After the first unsuccesses you start getting some right. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. 
+[[Good, let's not let this feeling go]](homework_4.2)<br>
+
+
+[[homework_4.2]]:
+It is finished by bedtime. You feel tired and awesome at the same time. Too tired to think about anything. 
+[[Time to sleep]](finish_4.1)<br>
+
+
+[[finish_4.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. About half of your class looks sleep deprived. This is reason to feel proud. 
+Although, you'll have to find some other time to clean your home. 
+
+
+
+[[homework_5.1]]:
+You remember some details from studying yesterday, so it is not that hard. After the first unsuccesses you start getting some right. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. 
+[[Good, let's not let this feeling go]](homework_5.2)<br>
+
+[[homework_5.2]]:
+It is finished by bedtime. You feel tired and awesome at the same time. Too tired to think about anything. 
+[[Time to sleep]](finish_5.1)<br>
+
+[[computer_5.1]]:
+You play on the computer, each passing minute you promise to yourself that you will stop playing and start studying...right after the next game. This does not happen. 4 hours later you realise that nothing will become of your homework assignment. 
+[[Just enjoy this moment, don't think about anything]](computer_5.2)<br>
+
+[[computer_5.2]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_5.2)<br>
+
+[[clean_5]]:
+You get the vacum cleaner and vacum most of your home's corners and floor-space. Then you take your carpets outside and beat them with a carpet beater until they are clean enough. It was pretty fun, actually. 
+[[You really don't feel like studying today, play something on the computer to distract yourself]](computer_5.3)<br>
+
+[[computer_5.3]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_5.3)<br>
+
+[[finish_5.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. About half of your class looks sleep deprived. This is reason to feel proud. :)
+
+
+[[finish_5.2]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. 
+
+
+[[finish_5.3]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. Also, you did finally clean your home. :)
+
+
+[[homework_6.1]]:
+You remember some details from studying yesterday, so it is not that hard. After the first unsuccesses you start getting some right. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. 
+[[Good, let's not let this feeling go]](homework_3.2)<br>
+
+[[homework_6.2]]:
+It is finished by bedtime. You feel tired and awesome at the same time. Too tired to think about anything. 
+[[Time to sleep]](finish_3.1)<br>
+
+[[computer_6.1]]:
+You play on the computer, each passing minute you promise to yourself that you will stop playing and start studying...right after the next game. This does not happen. 4 hours later you realise that nothing will become of your homework assignment. 
+[[Just enjoy this moment, don't think about anything]](computer_3.2)<br>
+
+[[computer_6.2]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_3.2)<br>
+
+[[finish_6.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. About half of your class looks sleep deprived. This is reason to feel proud. Also, you finally got your home clean. :)
+
+
+[[finish_6.2]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. Also, you did finally clean your home. :)
+
+
+[[homework_7.1]]:
+You realize that you have a very important homework to do and, if there is any hope of getting it done, you have to spend all of your remaining time on this. you triple check all your assignments and see that they are not easy. Still, you slowly begin and slow progress ensues. Some time goes by and you start understanding that you will probably not finish everything on time. 
+Now you're tired. The fact must be accepted that this cannot be completed, but what will others think of you if you don't even show enough effort to finish the first ones. 
+[[Just do what you can right now, at least you have done something then]](homework_7.2)<br>
+
+[[homework_7.2]]:
+After the first unsuccesses you start getting some right. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. 
+You stay up half the night and finish your homework; or rather, the absolute minimal amount of it, so that the school would classify it as finished. 
+[[It's seriously late, go to sleep]](finish_7.1)<br>
+
+[[computer_7.1]]:
+You play on the computer, each passing minute you promise to yourself that you will stop playing and start studying...right after the next game. This does not happen. 4 hours later you realise that nothing will become of your homework assignment. 
+[[Just enjoy this moment, don't think about anything]](computer_7.2)<br>
+
+[[computer_7.2]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_7.2)<br>
+
+[[clean_7]]:
+You get the vacum cleaner and vacum most of your home's corners and floor-space. Then you take your carpets outside and beat them with a carpet beater until they are clean enough. It was pretty fun, actually. 
+[[You really don't feel like studying today, play something on the computer to distract yourself]](computer_7.3)<br>
+
+[[computer_7.3]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_7.3)<br>
+
+[[finish_7.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. This is reason to feel proud, while still tired from not having enough sleep. :)
+
+
+[[finish_7.2]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. :)
+
+
+[[finish_7.3]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. Also, you did finally clean your home. :)
+
+
+[[homework_8.1]]:
+You realize that you have a very important homework to do and, if there is any hope of getting it done, you have to spend all of your remaining time on this. you triple check all your assignments and see that they are not easy. Still, you slowly begin and slow progress ensues. Some time goes by and you start understanding that you will probably not finish everything on time. 
+Now you're tired. The fact must be accepted that this cannot be completed, but what will others think of you if you don't even show enough effort to finish the first ones. 
+[[Just do what you can right now, at least you have done something then]](homework_8.2)<br>
+
+[[homework_8.2]]:
+After the first unsuccesses you start getting some right. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. 
+You stay up half the night and finish your homework; or rather, the absolute minimal amount of it, so that the school would classify it as finished. 
+[[It's seriously late, go to sleep]](finish_8.1)<br>
+
+[[computer_8.1]]:
+You play on the computer, each passing minute you promise to yourself that you will stop playing and start studying...right after the next game. This does not happen. 4 hours later you realise that nothing will become of your homework assignment. 
+[[Just enjoy this moment, don't think about anything]](computer_1.2)<br>
+
+[[computer_8.2]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_8.2)<br>
+
+[[finish_8.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. This is reason to feel proud, while still tired from not having enough sleep. Also, you finally got your home clean. :)
+
+
+[[finish_8.2]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. Also, you did finally clean your home. :)
+
+
+[[homework_9.1]]:
+You remember some details from studying yesterday, so it is not that hard. After the first unsuccesses you start getting some right. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. 
+[[Good, let's not let this feeling go]](homework_9.2)<br>
+
+[[homework_9.2]]:
+It is finished by bedtime. You feel tired and awesome at the same time. Too tired to think about anything. 
+[[Time to sleep]](finish_9.1)<br>
+
+[[computer_9.1]]:
+You play on the computer, each passing minute you promise to yourself that you will stop playing and start studying...right after the next game. This does not happen. 4 hours later you realise that nothing will become of your homework assignment. 
+[[Just enjoy this moment, don't think about anything]](computer_9.2)<br>
+
+[[computer_9.2]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_9.2)<br>
+
+[[clean_9]]:
+You get the vacum cleaner and vacum most of your home's corners and floor-space. Then you take your carpets outside and beat them with a carpet beater until they are clean enough. It was pretty fun, actually. 
+[[You really don't feel like studying today, play something on the computer to distract yourself]](computer_9.3)<br>
+
+[[computer_9.3]]:
+You play on the computer until bedtime, preferring not to think about what would have been if you had just made some other choices when they could be made. Thinking about this would only make you more frustrated. 
+[[There's no point in anything anyway]](finish_9.3)<br>
+
+[[finish_9.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. About half of your class looks sleep deprived. This is reason to feel proud. :)
+
+
+[[finish_9.2]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. 
+
+
+[[finish_9.3]]:
+Tomorrow at school you apologize for not having your homework done; you belong to the 1/3 of the class who have theirs not ready yet. You feel stupid for not doing it, despite having sufficient time. At least you are not alone in this. Also, you did finally clean your home. :)
+
+
+[[homework_10.1]]:
+You remember some details from studying yesterday, so it is not that hard. Man, this is starting to get fun! Things make sence in a way that they simply did not in the beginning. You finish everything and double check the answers. 
+You feel good, like you could still do some hard work if you wanted. 
+[[You could make a start in cleaning your house, even if you cant do it all today]](clean_10)<br>
+[[You deserve a break, there's this new game you could try out]](computer_10.1)<br>
+
+[[clean_10]]:
+You get the vacum cleaner and vacum most of your home's corners and floor-space. Then you take your carpets outside and beat them with a carpet beater until they are clean enough. It was pretty fun, actually.
+[[Time for bed]](finish_10.1)<br>
+
+[[computer_10.1]]:
+You open the computer and play a new exiting game. It feels good, because there are no worries about unfinished homework. 
+[[You could make a start in cleaning your house, even if you cant do it all today]](finish_10.2)<br>
+
+[[finish_10.1]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. About half of your class looks sleep deprived. This is reason to feel proud. Also, you finally got your home clean. :)
+
+Objective completed!!!
+
+[[finish_10.2]]:
+Tomorrow at school you hand over your homework and are complimented, seeing as about 1/3 of the class have theirs not ready yet. About half of your class looks sleep deprived. This is reason to feel proud. 
