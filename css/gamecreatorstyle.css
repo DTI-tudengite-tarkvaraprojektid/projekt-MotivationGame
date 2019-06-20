@@ -87,7 +87,6 @@
     border: 2px solid blue;
   }
 
-
   #button{
     background-color: white;
     float: left;
@@ -108,3 +107,62 @@
     background-color: orange;
     color: white;
   }
+
+  #information {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #888;
+    margin: 5px;
+    padding: 5px 5px;
+    color: black;
+    border-radius: 5px;
+    border-color: black;
+    border: solid 2px;
+    transition-duration: 0.4s;
+    left: 75%;
+  }
+  
+  #information:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+  }
+  
+  #information .popuptext {
+    visibility: hidden;
+    width: 420px;
+    padding: 15px 15px;
+    margin: 10px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    top: 250%;
+    left: -130%;
+    overflow-wrap: break-word;
+    border-color: black;
+    border: solid 2px;
+    border-radius: 5px;
+  }
+  
+  #information .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    border-color: black;
+  }
+  
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
