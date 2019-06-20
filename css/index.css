@@ -1,9 +1,10 @@
 div.a{
-	width:50%; 
+	width:50%;
 	margin:0 auto;
 	text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 40px;
+	max-height: 200px;
 }
 #gameName{
 	font-size: 24px;
@@ -25,7 +26,7 @@ body {
 	width: 300px;
 	height: 200px;
 	z-index: 15;
-	top: 50%;
+	top: 600px;
 	left: 47%;
 	margin: -100px 0 0 -150px;
 }
@@ -51,14 +52,6 @@ body {
     background-color: #07db00;
     color: black;
 }
-
-
-
-
-
-
-
-
 
 
 @-webkit-keyframes Gradient {
