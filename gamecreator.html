@@ -19,11 +19,15 @@
   <div id="twodivs">
     <div id="ADTT">
       <h2>Set your characters attributes and story properties.</h2>
-        <label>Autonomy:</label>    <select name="Autonomy1" class="DDown" id="StatAutonomy"><option selected hidden>-100 to 100</option></select><br><br>
-        <label>Competence:</label>  <select name="Competence1" class="DDown" id="StatCompetence"><option selected hidden>-100 to 100</option></select><br><br>
-        <label>Relatedness:</label> <select name="Relatedness1" class="DDown" id="StatRelatedness"><option selected hidden>-100 to 100</option></select><br><br>
-        <label>Stress:</label>      <select name="Stress1" class="DDown" id="StatStress"><option selected hidden>-100 to 100</option></select><br><br>
-        <label>Fatigue:</label>     <select name="Fatigue1" class="DDown" id="StatFatigue"><option selected hidden>-100 to 100</option></select><br><br>
+        <div id="information" onclick="infoPop()">INFORMATION
+            <span class="popuptext" id="popup">On the left are the starting attributes and task start time, the task that the player needs to complete and the time that he or she has to do it. On the right you can write the story for the current choices and choices that the player can make. Every choice has its own consequences to the players attributes. Download file downloads the save in json format. Save button saves the chapter and brings you to the next page where you write the next chapter. Clear button clears the text that you have written in the boxes. After saving the left side will have chapters that you have created. Green is done, red is in progress.
+            </span>
+        </div><br><br>
+        <label>Autonomy:</label>    <input id="StatAutonomy" type="number" placeholder="Level of autonomy" max="100"> <br><br>
+        <label>Competence:</label>  <input id="StatCompetence" type="number"placeholder="Level of competence" max="100"> <br><br>
+        <label>Relatedness:</label> <input id="StatRelatedness" type="number" placeholder="Level of relatedness" max="100"> <br><br>
+        <label>Stress:</label>      <input id="StatStress" type="number" placeholder="Level of stress" max="100"> <br><br>
+        <label>Fatigue:</label>     <input id="StatFatigue" type="number" placeholder="Level of fatigue" max="100"> <br><br>
         <label>Time: </label> <input id="TaskTime" type="time" min="0"><br><br>
         <label>Time to complete: </label> <input id="DaysToComplete" type="number" min="0" placeholder="Days"> <input id="HoursToComplete" type="number" min="0" max="23" placeholder="Hours"> <br><br>
         <label>Task: </label> <textarea id="TaskText" rows="3" cols="30" placeholder="Insert your task here."></textarea>
@@ -68,7 +72,6 @@
       <select name="Time change" id="dropdown24" class="DDown" disabled><option selected hidden>Time</option></select>
       <select name="Progress change" id="dropdown28" class="DDown" disabled><option selected hidden>Progress</option></select><br><br>
       <a type="button" value="Load" href="general.json" id="loadbutton" download="myStory.json" class="button">Download file</a>
-      <input type="button" value="Next" id="nextbutton" class="button">
       <input type="button" value="Save" id="savebutton" class="button">
       <input type="button" value="Clear" id="clearbutton" class="button" onClick="window.location.href=window.location.href">
     </div>
