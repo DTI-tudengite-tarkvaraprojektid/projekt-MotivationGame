@@ -62,11 +62,7 @@ html, body{
     right: 0%;
     bottom: 0;
   }
-  
-  .restart2:hover {
-    background-color: red;
-    color: white;
-  }
+
 
 
 .button {
@@ -84,10 +80,6 @@ html, body{
   cursor: pointer;
 }
 
-.button:hover {
-  background-color: #008CBA;
-  color: white;
-}
 
   #textandchoices {
     text-align: right;
@@ -97,85 +89,85 @@ html, body{
     z-index: -1;
     font-family: Helvetica, Arial, sans-serif;
   }
- 
+
   #Autonomy {
     background-color: black;
     border-radius: 13px;
     padding: 2px;
   }
-  
+
   #Autonomy>div {
     background-color: orange;
     width: 69%;
     height: 18px;
     border-radius: 18px;
   }
-  
+
   #Competence {
     background-color: black;
     border-radius: 13px;
     padding: 2px;
   }
-  
+
   #Competence>div {
     background-color: red;
     width: 15%;
     height: 18px;
     border-radius: 18px;
   }
-  
+
   #Relatedness {
     background-color: black;
     border-radius: 13px;
     padding: 2px;
   }
-  
+
   #Relatedness>div {
     background-color: green;
     width: 75%;
     height: 18px;
     border-radius: 18px;
   }
-  
+
   #Motivation {
     background-color: black;
     border-radius: 13px;
     padding: 2px;
   }
-  
+
   #Motivation>div {
     background-color: red;
     width: 1%;
     height: 18px;
     border-radius: 18px;
   }
-  
+
   #Stress {
     background-color: black;
     border-radius: 13px;
     padding: 2px;
   }
-  
+
   #Stress>div {
     background-color: orangered;
     width: 69%;
     height: 18px;
     border-radius: 18px;
   }
-  
+
   #Progress {
     background-color: black;
     border-radius: 13px;
     padding: 2px;
   }
-  
+
   #Progress>div {
     background-color: green;
     width: 100%;
     height: 18px;
     border-radius: 18px;
   }
-  
+
 
   #information {
     position: relative;
@@ -190,13 +182,13 @@ html, body{
     border: solid 2px;
     transition-duration: 0.4s;
   }
-  
+
   #information:hover {
     background-color: black;
     color: white;
     border-color: black;
   }
-  
+
   #information .popuptext {
     visibility: hidden;
     width: 300px;
@@ -216,25 +208,25 @@ html, body{
     border: solid 2px;
     border-radius: 5px;
   }
-  
+
   #information .show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
     border-color: black;
   }
-  
+
   @-webkit-keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
   }
-  
+
   @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
   }
-  
-  
+
+
   .modal{
     background-color: rgb(120, 196, 221);
     font-family: Georgia, serif;
@@ -246,7 +238,7 @@ html, body{
     max-height: 300px;
     border-color: #008CBA;
   }
-  
+
   .restart3 {
     background-color: white;
     color: black;
@@ -264,7 +256,7 @@ html, body{
     position: absolute;
     bottom: 9%;
   }
-  
+
   .restart3:hover {
     background-color: orange;
     color: white;
