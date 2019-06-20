@@ -105,7 +105,15 @@ function getData(){
 		chapt.Time[j-1] = $("#dropdown2"+j).val();
 		chapt.Points["Answer" + j][5]=$("#dropdown" + (j+24)).val();
 	}
+	story.Autonomy = parseInt($("#StatAutonomy").val());
+	story.Competence = parseInt($("#StatCompetence").val());
+	story.Relatedness = parseInt($("#StatRelatedness").val());
+	story.Stress = parseInt($("#StatStress").val());
+	story.Fatigue = parseInt($("#StatFatigue").val());
 	story.Chapters.push(chapt);
+	story.DeadLine = endTime;
+	story.StartTime = startTime;
+	story.Task = $("#TaskText").val()
 	var status = new ChapterStatus();
 	status.Chapter.push("default");
 	status.Status.push(1);
@@ -161,6 +169,7 @@ function getStartTime(){
 
 function saveStoryLocal(c){
 	localStorage.setItem('Story', JSON.stringify(story));
+	console.log(story);
 	localStorage.setItem('Status', JSON.stringify(c));
 	saveStory();
 }
@@ -402,7 +411,8 @@ function saveData(){
 	var id = -1;
 	chapt = new game($("#StoryText").val(), "", name);
 	chapt.Answers.push($("#Choice1").val(), $("#Choice2").val(), $("#Choice3").val(), $("#Choice4").val());
-	chapt["Next chapter"].push($("#NextChap1").val().replace(/<[^>]*>?/gm, ''), $("#NextChap2").val().replace(/<[^>]*>?/gm, ''), $("#NextChap3").val().replace(/<[^>]*>?/gm, ''), $("#NextChap4").val().replace(/<[^>]*>?/gm, ''));chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
+	chapt["Next chapter"].push($("#NextChap1").val().replace(/<[^>]*>?/gm, ''), $("#NextChap2").val().replace(/<[^>]*>?/gm, ''), $("#NextChap3").val().replace(/<[^>]*>?/gm, ''), $("#NextChap4").val().replace(/<[^>]*>?/gm, ''));
+	chapt.Points["Answer1"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Points["Answer2"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Points["Answer3"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
 	chapt.Points["Answer4"] = ["Autonomy", "Competence", "Relatedness", "Stress", "Fatigue", "Progress"];
