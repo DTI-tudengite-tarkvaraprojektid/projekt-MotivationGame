@@ -153,6 +153,7 @@ function saveStoryLocal(c){
 }
 
 function saveStory(){
+	console.log(story);
 	$.ajax
 		({
 				type: "GET",
@@ -163,6 +164,7 @@ function saveStory(){
 				success: function () {alert("Thanks!"); },
 				failure: function() {alert("Error!");}
 		});
+		console.log(story);
 }
 
 function getSavedData(){
@@ -226,7 +228,6 @@ function showChapters(){
 	var currentAtr = checkAtr();
 	if(currentStatus == 1 && currentAtr == 1){
 		getData();
-		document.getElementById("nextbutton").onclick = showAllChapters;
 		document.getElementById("clearbutton").onclick = showAllChapters;
 		document.getElementById("savebutton").onclick = saveData;
 		story = JSON.parse(localStorage.getItem('Story'));
@@ -289,14 +290,12 @@ function enableBoxes(){
 
 function cleanBoxes(){
 	document.getElementById("StoryText").value = "";
-	document.getElementById("Choice1").value = "";
-	document.getElementById("Choice2").value = "";
-	document.getElementById("Choice3").value = "";
-	document.getElementById("Choice4").value = "";
-	document.getElementById("NextChap1").value = "";
-	document.getElementById("NextChap2").value = "";
-	document.getElementById("NextChap3").value = "";
-	document.getElementById("NextChap4").value = "";
+	for(i=1; i<5; i++){
+		document.getElementById("Choice"+i).value = "";
+		document.getElementById("NextChap"+i).value = "";
+		$("#NextChap"+i).css('border', '2px solid #008CBA');
+		$("#Choice"+i).css('border', '2px solid #008CBA');
+	}
 	for(i=1; i<6; i++){
 			document.getElementById("dropdown"+i).value = placeHolder[i-1];
 			document.getElementById("dropdown"+(i+5)).value = placeHolder[i-1];
@@ -308,6 +307,9 @@ function cleanBoxes(){
 		document.getElementById("dropdown"+(24+i)).value = placeHolder[6];
 		document.getElementById("checkBox"+i).style.visibility = 'hidden';
 	}
+	for(i=1; i<29; i++){
+		$("#dropdown"+i).css('border', '2px solid #008CBA');
+	}
 }
 
 function newChapter(name, i){
@@ -315,6 +317,7 @@ function newChapter(name, i){
 	index = i;
 	var status = JSON.parse(localStorage.getItem('Status'));
 	if(status.Status[i] == 1){
+		cleanBoxes();
 		loadData(name, i);
 	} else {
 		cleanBoxes();
@@ -356,24 +359,27 @@ function loadData(name, i){
 
 
 function showAllChapters(){
-	story = JSON.parse(localStorage.getItem('Story'));
-	var status = JSON.parse(localStorage.getItem('Status'));
-	var text = "";
-	for(i= 0; i<status.Chapter.length; i++){
-		text += '<div id="chapter">';
-				if(status.Chapter[i] != ""){
-					var name = status.Chapter[i];
-					if(status.Status[i] == 1){
-						text += `<button id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
-					} else {
-						text += `<button id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+	var currentStatus = checkAll();
+	if(currentStatus == 1){
+		story = JSON.parse(localStorage.getItem('Story'));
+		var status = JSON.parse(localStorage.getItem('Status'));
+		var text = "";
+		for(i= 0; i<status.Chapter.length; i++){
+			text += '<div id="chapter">';
+					if(status.Chapter[i] != ""){
+						var name = status.Chapter[i];
+						if(status.Status[i] == 1){
+							text += `<button id="button" style="color:green;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+						} else {
+							text += `<button id="button" style="color:red;" onclick="newChapter('${name}', ${i})";>`+name+`</button>`;
+						}
 					}
-				}
-		text += '</div>';
-	};
-	document.getElementById("ADTT").innerHTML = text;
-	cleanBoxes();
-	disableBoxes();
+			text += '</div>';
+		};
+		document.getElementById("ADTT").innerHTML = text;
+		cleanBoxes();
+		disableBoxes();
+	}
 }
 
 function saveData(){
@@ -509,4 +515,9 @@ function checkAtr(){
 			}
 		}
 		return statusAtr;
+}
+
+function infoPop(){
+	var popup = document.getElementById("popup");
+	popup.classList.toggle("show");
 }
