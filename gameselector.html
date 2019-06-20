@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery.min.js"></script>
   <script src="js/style.js"></script>
   <script src="js/gameselector.js"></script>
   <meta charset="UTF-8">
@@ -14,13 +15,11 @@
     <h2>Select a story to play</h2>
   </div>
   <div class="upload-btn-wrapper">
-    <input id="json-file" type="file"/>
-    <label for="json-file"/>choose a file</label>
-    <input type="submit" id="upload" class="button" value="Upload game" onclick="uploadJSON();"/>
-  </div>
-  <div id="container">
-    <div id="main">
-    </div>
-  </div>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+      <input id="json-file" type="file" name="fileToUpload"/>
+      <label for="json-file"/>choose a file</label>
+      <input id="upload" class="button" type="submit" value="Upload Game" name="submit">
+  </form>
+   </div>
 </body>
 </html>
