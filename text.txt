@@ -1,0 +1,12 @@
+Testisin kodulehte, mängulehte, story creator lehte ja ka choose story lehte. 
+Testimise käigus vajutasin mängulehel võimalikult kiirelt ja palju erinevaid nuppe, et mäng segadusse ajada. 
+Story creatoris sisestasin erinevaid väärtusi kohtadesse kuhu nad ei käi, näiteks aja lahtrisse tähti, <p></p> jne.
+Choose story lehel laadisin üles erinevaid faile, et näha mis juhtub.
+
+Parandatud vead (kui oli vigu) 
+Choose story leht töötas ilusti, vigu ei leidnud.
+Testimise ajal ei töötanud mängulehel restart nupp paremas all servas, kuna Braian arendas popup menüüd.
+
+Parandamata vead (kui oli vigu)
+Braiani disain ei olnud väga sõbralik kui brauseri vaateakna suurust muuta.
+Story creatoris kõik testid ei tööta perfektselt. 
