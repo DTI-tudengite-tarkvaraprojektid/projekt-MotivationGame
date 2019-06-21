@@ -19,10 +19,10 @@ Projekti idee on näidata mängijale, kuidas saaks enda ülesande ära täita st
 Meie projekt põhineb javascriptil, php-l, jquery-l, css-il ja html5-el.
 
 ## Nimede loetelu
-Urmot Rosenberg
-Martin Jagodin
-Braian Jullinen
-Rasmus Vahtra
+Urmot Rosenberg \
+Martin Jagodin \
+Braian Jullinen \
+Rasmus Vahtra \
 Jaanus Lille
 
 ## Paigaldusjuhis
