@@ -45,7 +45,7 @@ $(document).ready(function() {
 			if (localStorage.getItem("StoryName") !== null) {
 				 url = "uploads/"+localStorage.getItem('StoryName');
 			} else {
-				 url = "story.json";
+				 url = "Story.json";
 			}
 			console.log(url);
 			$.getJSON( url, function(data){
